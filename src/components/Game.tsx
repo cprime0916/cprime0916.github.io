@@ -28,15 +28,8 @@ const choiceObject: any = {
             },
         },
         no: {
-            question: "Is it native to South America?",
-            yes: {
-                answer: "Bougainvillea spectabilis",
-                alias: "bs",
-            },
-            no: {
-                answer: "Bauhinia blakeana",
-                alias: "bb",
-            }
+            answer: "Bauhinia blakeana",
+            alias: "bb",
         }
     },
 };
