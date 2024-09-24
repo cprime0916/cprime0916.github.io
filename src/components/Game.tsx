@@ -40,7 +40,7 @@ const Game: React.FC = () => {
         
         if(nowKey.answer !== undefined){
             // alert(`${nowKey.alias}`);
-            location.assign(`flower/${nowKey.alias}`)
+            location.assign(`#/flower/${nowKey.alias}`)
         }
     }, [nowKey]);
     return (
