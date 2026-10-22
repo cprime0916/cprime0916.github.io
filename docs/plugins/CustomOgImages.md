@@ -274,6 +274,7 @@ export const og: SocialImageOptions["Component"] = (
   const Li = [created, reading]
 
   return (
+    {% raw %}
     <div
       style={{
         position: "relative",
@@ -371,6 +372,7 @@ export const og: SocialImageOptions["Component"] = (
         </p>
       </div>
     </div>
+  {% endraw %}
   )
 }
 ```
