@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>Characterizing walkability in Hong Kong's 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility</title><meta charset="utf-8"/><link rel="preload" href="../index-bb6c1746.css" as="style"/><link rel="preload" href="../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Quartz 5"/><meta property="og:title" content="Characterizing walkability in Hong Kong's 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Characterizing walkability in Hong Kong's 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility"/><meta name="twitter:description" content="Characterizing walkability in Hong Kong’s 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility One-Sentence Summary This paper integrates Vision Transformer-based street view perception scores with local destination accessibility metrics using Gener..."/><meta property="og:description" content="Characterizing walkability in Hong Kong’s 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility One-Sentence Summary This paper integrates Vision Transformer-based street view perception scores with local destination accessibility metrics using Gener..."/><meta property="og:image:alt" content="Characterizing walkability in Hong Kong’s 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility One-Sentence Summary This paper integrates Vision Transformer-based street view perception scores with local destination accessibility metrics using Gener..."/><meta property="twitter:domain" content="cprime0916.github.io"/><meta property="og:url" content="https://cprime0916.github.io/tod/yu_2026_walkability_hong_kong_tod"/><meta property="twitter:url" content="https://cprime0916.github.io/tod/yu_2026_walkability_hong_kong_tod"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Characterizing walkability in Hong Kong’s 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility One-Sentence Summary This paper integrates Vision Transformer-based street view perception scores with local destination accessibility metrics using Gener..."/><meta name="generator" content="Quartz"/><link href="../index-bb6c1746.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-11d41004.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-26a99b87.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://cprime0916.github.io/tod/yu_2026_walkability_hong_kong_tod-og-image.webp"/><meta property="og:image:url" content="https://cprime0916.github.io/tod/yu_2026_walkability_hong_kong_tod-og-image.webp"/><meta name="twitter:image" content="https://cprime0916.github.io/tod/yu_2026_walkability_hong_kong_tod-og-image.webp"/><meta property="og:image:type" content="image/webp"/></head><body data-slug="tod/yu_2026_walkability_hong_kong_tod" data-basepath><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Quartz 5</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Search" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something..." placeholder="Search for something..."/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Dark mode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Reader mode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-18" aria-label="Explorer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-18" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../tod/">TOD</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Characterizing walkability in Hong Kong's 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility</a></div></nav><h1 class="article-title">Characterizing walkability in Hong Kong's 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">1</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../tags/literature" class="internal internal-link tag-link">literature</a><span class="note-properties-separator">, </span><a href="../tags/walkability" class="internal internal-link tag-link">walkability</a><span class="note-properties-separator">, </span><a href="../tags/tod" class="internal internal-link tag-link">tod</a><span class="note-properties-separator">, </span><a href="../tags/street-view" class="internal internal-link tag-link">street-view</a><span class="note-properties-separator">, </span><a href="../tags/hong-kong" class="internal internal-link tag-link">hong-kong</a></span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-09-11T16:00:00.000Z">Sep 12, 2026</time><span>15 min read</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="characterizing-walkability-in-hong-kongs-15-minute-transit-oriented-development-tod-insights-from-street-view-imagery-and-local-accessibility">Characterizing walkability in Hong Kong’s 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#characterizing-walkability-in-hong-kongs-15-minute-transit-oriented-development-tod-insights-from-street-view-imagery-and-local-accessibility" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote class="callout abstract" data-callout="abstract">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>One-Sentence Summary </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>This paper integrates Vision Transformer-based street view perception scores with local destination accessibility metrics using Generalized Additive Models and hierarchical clustering across Hong Kong’s 15-minute MTR transit catchments, demonstrating that expanding sidewalk space and urban greenery significantly enhances perceived walkability in high-density transit environments.</p>
+</div>
+</blockquote>
+<h2 id="1-basic-information">1. Basic Information<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-basic-information" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Field</th><th>Content</th></tr></thead><tbody><tr><td>Authors</td><td>Zidong Yu, Ketong Shen, Xintao Liu</td></tr><tr><td>Year</td><td>2026</td></tr><tr><td>Source</td><td>Travel Behaviour and Society, Vol. 42, 101157</td></tr><tr><td>DOI</td><td>10.1016/j.tbs.2025.101157</td></tr><tr><td>Research Domain</td><td><a href="../urban-planning" class="internal internal-link alias" data-slug="urban-planning">Urban Planning</a>, <a href="../transit-oriented-development" class="internal internal-link alias" data-slug="transit-oriented-development">Transit-Oriented Development</a>, <a href="../active-mobility" class="internal internal-link alias" data-slug="active-mobility">Active Mobility</a></td></tr><tr><td>Research Type</td><td>Empirical Study</td></tr><tr><td>Research Object</td><td>Human streetscape perception, visual element composition, and local destination accessibility</td></tr><tr><td>Study Area</td><td><a href="../hong-kong" class="internal internal-link alias" data-slug="hong-kong">Hong Kong</a> (MTR station 15-minute catchment areas)</td></tr><tr><td>Spatial Scale</td><td><a href="../neighborhood-scale" class="internal internal-link alias" data-slug="neighborhood-scale">Neighborhood Scale</a>, <a href="../metropolitan-scale" class="internal internal-link alias" data-slug="metropolitan-scale">Metropolitan Scale</a></td></tr><tr><td>Time Frame</td><td>2021 (Street View Images) &amp; 2023 (Points of Interest)</td></tr></tbody></table></div>
+<h2 id="2-research-background--problem">2. Research Background &amp; Problem<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-research-background--problem" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="21-research-background">2.1 Research Background<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-research-background" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Rapid urban growth and transportation emissions have driven urban policies toward active travel modes like walking, prominently articulated through the 15-minute city paradigm (PDF p. 1). In high-density transit-oriented development (TOD) hubs like Hong Kong—where over 90% of daily trips rely on public transport—walking serves as the primary feeder mode to transit (PDF p. 3). However, compact urban forms frequently present physical constraints such as narrow sidewalks, dense building enclosures, and restricted sky views, which directly influence pedestrian visual comfort and safety (PDF p. 3).</p>
+<h3 id="22-literature-gap">2.2 Literature Gap<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-literature-gap" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Existing walkability research predominantly focuses on physical destination accessibility (proximity to amenities) or visual street features independently (PDF pp. 1–2). Few studies integrate human visual perceptual experiences (e.g., feelings of safety, beauty, liveliness) with physical destination accessibility and diversity within a unified 15-minute TOD framework, particularly in high-density Asian metropolitan settings (PDF p. 2).</p>
+<h3 id="23-research-objectives--questions">2.3 Research Objectives &amp; Questions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-research-objectives--questions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Research Objectives</strong>: Develop a spatial data-driven analytical framework combining street view imagery (SVI) perception with destination accessibility metrics to characterize walkability potential across 15-minute TOD zones in Hong Kong (PDF p. 2).</li>
+<li><strong>Research Questions</strong>:
+<ol>
+<li><em>RQ1</em>: What are the descriptive patterns and spatial distributions of visual elements extracted from SVIs in Hong Kong’s TOD-based 15-minute areas? (PDF p. 2)</li>
+<li><em>RQ2</em>: How do visual elements correlate with pedestrian perceptual feelings (safety, liveliness, beauty)? (PDF p. 2)</li>
+<li><em>RQ3</em>: What spatial heterogeneity exists across TOD areas, and how can integrating perceptual and accessibility metrics identify high walkability potential? (PDF p. 2)</li>
+</ol>
+</li>
+<li><strong>Hypotheses</strong>: Original text did not state explicit formal hypotheses.</li>
+</ul>
+<h2 id="3-theoretical--conceptual-framework">3. Theoretical &amp; Conceptual Framework<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-theoretical--conceptual-framework" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="31-core-concepts">3.1 Core Concepts<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-core-concepts" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Concept</th><th>Definition / Usage in Paper</th><th>Operationalization</th><th>Obsidian Link</th></tr></thead><tbody><tr><td>Perceived Walkability</td><td>Subjective human psychological and visual evaluation of the surrounding street environment</td><td>Machine learning (ViT) scoring of safety, liveliness, and beauty from SVIs (0–10 scale)</td><td><a href="../perceived-walkability" class="internal internal-link alias" data-slug="perceived-walkability">Perceived Walkability</a></td></tr><tr><td>15-Minute TOD Area</td><td>Catchment accessible within a 15-minute single-way walk from an MTR station</td><td>Network routing isochrone using 1.1 m/s walking speed (~990–1000m buffer)</td><td><a href="../15-minute-city" class="internal internal-link alias" data-slug="15-minute-city">15-Minute City</a></td></tr><tr><td>Visual Elements</td><td>Physical streetscape components visible in pedestrian field of view</td><td>Pixel percentage extracted via PSPNet semantic segmentation (building, sky, tree, sidewalk, wall, plant, ground)</td><td><a href="../street-view-imagery" class="internal internal-link alias" data-slug="street-view-imagery">Street View Imagery</a></td></tr><tr><td>Destination Accessibility</td><td>Physical availability and land-use mix of urban amenities within walking range</td><td>Total POI count (opportunity) and Shannon entropy (diversity) across 7 function categories</td><td><a href="../local-accessibility" class="internal internal-link alias" data-slug="local-accessibility">Local Accessibility</a></td></tr><tr><td>Composite Perception</td><td>Integrated holistic index capturing overall visual walkability quality</td><td>Equal-weighted composite score combining safety, liveliness, and beauty perception scores</td><td><a href="../perceived-walkability" class="internal internal-link alias" data-slug="perceived-walkability">Perceived Walkability</a></td></tr></tbody></table></div>
+<h3 id="32-theoretical-foundations">3.2 Theoretical Foundations<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-theoretical-foundations" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>15-Minute City Concept</strong> (<a href="../15-minute-city" class="internal internal-link alias" data-slug="15-minute-city">15-Minute City</a>): Proposes that residents should access essential daily urban functions within a short walk from home (Moreno et al., 2021; PDF p. 1).</li>
+<li><strong>Transit-Oriented Development</strong> (<a href="../transit-oriented-development" class="internal internal-link alias" data-slug="transit-oriented-development">Transit-Oriented Development</a>): Concentrates compact, mixed-use land developments around high-capacity public transport nodes to support active commuting (Cervero &amp; Murakami, 2009; PDF p. 2).</li>
+<li><strong>Visual Urban Perception Theory</strong> (<a href="../perceived-walkability" class="internal internal-link alias" data-slug="perceived-walkability">Perceived Walkability</a>): Posits that visual streetscape configurations induce psychological reactions (safety, liveliness, aesthetics) that drive walking behavior (Dubey et al., 2016; PDF p. 3).</li>
+</ul>
+<h3 id="33-conceptual-relationships">3.3 Conceptual Relationships<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-conceptual-relationships" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>The analytical workflow feeds multi-source urban spatial data into deep learning and statistical modeling blocks to produce integrated TOD walkability typologies:</p>
+<ol>
+<li><strong>Input Layer</strong>: Google Street View Images (414k SVIs) + AutoNavi POIs (299k POIs) + MTR Street Network.</li>
+<li><strong>Extraction Layer</strong>: PSPNet Semantic Segmentation (7 visual elements) + Vision Transformers (ViT scoring for Safety, Liveliness, Beauty).</li>
+<li><strong>Modeling &amp; Integration Layer</strong>: Generalized Additive Models (GAMs) evaluating visual element influence + Shannon Entropy calculating local functional diversity + Composite Perceptual Index.</li>
+<li><strong>Classification Output Layer</strong>: Hierarchical Agglomerative Clustering categorizing TOD catchments into 5 distinct walkability profiles.</li>
+</ol>
+<h2 id="4-data--methods">4. Data &amp; Methods<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-data--methods" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-research-design">4.1 Research Design<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-research-design" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Quantitative, spatial data-driven research design incorporating deep computer vision modeling, spatial network analysis, non-linear statistical modeling, and unsupervised clustering (PDF pp. 4–6).</p>
+<h3 id="42-data">4.2 Data<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-data" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Data / Sample</th><th>Source</th><th>Quantity &amp; Time</th><th>Spatial Granularity</th><th>Role</th><th>Limitations</th></tr></thead><tbody><tr><td>Street View Images (SVIs)</td><td>Google Street View API</td><td>414,436 images across 103,609 points; 2021</td><td>50m network sampling intervals (4 headings)</td><td>Extracting visual element compositions and perceptual scores</td><td>Static daytime snapshots; potential occlusions</td></tr><tr><td>Points of Interest (POIs)</td><td>AutoNavi API</td><td>299,692 POIs (7 categories); 2023</td><td>Point-level</td><td>Calculating 15-minute destination quantity and functional diversity</td><td>Lacks floor area or capacity metrics</td></tr><tr><td>MTR Stations &amp; Catchments</td><td>MTR Network / ArcGIS</td><td>103+ station catchments</td><td>15-min walking isochrone (~990m buffer)</td><td>Spatial boundary delineation for TOD analysis</td><td>Fixed mean speed (1.1 m/s) ignores terrain gradient</td></tr><tr><td>Perceptual Pre-training Data</td><td>MIT Place Pulse 2.0</td><td>110,988 images across 56 global cities</td><td>Image pair comparisons</td><td>Fine-tuning ViT perceptual prediction models</td><td>Global crowd ratings may differ from local HK preferences</td></tr></tbody></table></div>
+<h3 id="43-methodological-workflow">4.3 Methodological Workflow<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#43-methodological-workflow" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>NetworkIsochrone Delineation</strong>: Delineated 15-minute walking catchment polygons around MTR stations using network time friction (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1.1</span><span class="mord text"><span class="mord"> m/s</span></span></span></span></span> walking speed) in ArcGIS (PDF p. 4).</li>
+<li><strong>Visual Feature Extraction &amp; ViT Scoring</strong>: Processed 227,564 SVIs inside catchments with PSPNet for pixel segmentation and fine-tuned Vision Transformers (ViT) to assign 0–10 scores for safety, liveliness, and beauty (PDF pp. 4–5).</li>
+<li><strong>Non-linear Relationship Modeling</strong>: Applied Generalized Additive Models (GAMs) with spline smoothers to evaluate non-linear impacts of visual elements on perceptual scores (PDF pp. 4–5).</li>
+<li><strong>Accessibility Metric Calculation</strong>: Calculated cumulative POI opportunities and Shannon land-use entropy for each MTR catchment (PDF pp. 5–6).</li>
+<li><strong>Hierarchical Typology Clustering</strong>: Executed agglomerative hierarchical clustering on normalized visual, perceptual, and accessibility vectors to group MTR catchments (PDF p. 6).</li>
+</ol>
+<h3 id="44-models-metrics--variables">4.4 Models, Metrics &amp; Variables<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#44-models-metrics--variables" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Name</th><th>Type</th><th>Definition / Formula</th><th>Role in Study</th></tr></thead><tbody><tr><td>Generalized Additive Model (GAM)</td><td>Statistical Model</td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mopen">(</span><span class="mord mathnormal">μ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.104em;vertical-align:-0.2997em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1076em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td><td>Captures non-linear impacts of visual elements on visual perception</td></tr><tr><td>Total Destination Accessibility (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)</td><td>Accessibility Metric</td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.1858em;vertical-align:-0.4358em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4358em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> if <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9805em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">ij</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">990</span><span class="mord text"><span class="mord">m</span></span></span></span></span> else <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></td><td>Measures cumulative opportunity within 15-min walk</td></tr><tr><td>Functional Diversity (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)</td><td>Diversity Metric</td><td><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2401em;vertical-align:-0.4358em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4358em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.0573em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></td><td>Shannon entropy measuring POI land-use mix across 7 categories</td></tr><tr><td>Composite Perception Score</td><td>Perceptual Index</td><td>Equal weighting: <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2772em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Safety</span></span><span class="mbin mtight">+</span><span class="mord text mtight"><span class="mord mtight">Liveliness</span></span><span class="mbin mtight">+</span><span class="mord text mtight"><span class="mord mtight">Beauty</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></td><td>Holistic representation of positive visual walkability</td></tr></tbody></table></div>
+<h3 id="45-method-evaluation">4.5 Method Evaluation<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#45-method-evaluation" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Methodological Soundness</strong>: Combining deep learning computer vision (ViT) with spatial non-linear modeling (GAM) successfully overcomes the high labor costs and localized sampling constraints of traditional manual walkability audits (PDF pp. 2–4).</li>
+<li><strong>Improvements Over Prior Work</strong>: Integrates visual streetscape perception directly with functional destination accessibility, presenting a multi-dimensional evaluation model for dense TODs (PDF p. 2).</li>
+<li><strong>Potential Bias &amp; Risk</strong>: Pre-training perceptual models on global crowdsourced data (Place Pulse 2.0) introduces potential cross-cultural perception divergence between international crowdsourced raters and local Hong Kong pedestrians [Analytical Synthesis].</li>
+<li><strong>Reproducibility Information Requirements</strong>: Replicability requires precise ViT model weights, exact hyperparameter configurations for GAM spline smoothing, and ArcGIS pedestrian network topological data [Analytical Synthesis].</li>
+</ul>
+<h2 id="5-major-findings">5. Major Findings<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-major-findings" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-core-findings">5.1 Core Findings<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-core-findings" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>Dominance of Concrete Visual Elements</strong>: Buildings constitute the largest visual share in 15-minute TOD areas (mean 35.07%, max 59.65%), followed by sky (27.63%), trees (18.44%), and sidewalks (6.29%) (PDF p. 6, Table 3).</li>
+<li><strong>Sidewalks Drive Perceived Safety and Walkability</strong>: GAM regressions reveal that sidewalk proportion has the strongest positive non-linear relationship with safety (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.87</span></span></span></span>), liveliness (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.95</span></span></span></span>), and composite perception (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.92</span></span></span></span>, effect size 0.76, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.01</span></span></span></span>) (PDF pp. 8–10).</li>
+<li><strong>Spatial Divergence of Perceptions</strong>: Liveliness scores peak sharply in dense downtown commercial cores (Yau Tsim Mong, Central), whereas safety and beauty scores peak in peripheral satellite districts and suburban new towns (Disneyland Resort, Tseung Kwan O) (PDF pp. 8–9).</li>
+<li><strong>Typology Heterogeneity Across TOD Catchments</strong>: Clustering identifies 5 distinct TOD typologies:
+<ul>
+<li><em>Group 1</em>: Downtown cores (e.g., Mong Kok, Central) with extremely high accessibility and perception, but depleted urban greenery.</li>
+<li><em>Group 2 &amp; 3</em>: Peripheral/border areas (e.g., Airport, border crossings) featuring expansive open views but low destination accessibility.</li>
+<li><em>Group 4</em>: Mixed downtown/new town centers (e.g., Tuen Mun, Yuen Long) with moderate walkability and lower destination density.</li>
+<li><em>Group 5</em>: New town residential catchments with abundant greenery and balanced perceptual scores (PDF pp. 9–11).</li>
+</ul>
+</li>
+</ol>
+<h3 id="52-secondary-findings--anomalies">5.2 Secondary Findings &amp; Anomalies<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-secondary-findings--anomalies" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>The Sham Shui Po Paradox</strong>: Sham Shui Po exhibits very high liveliness scores due to dense pedestrian activity, yet records low beauty and safety ratings driven by aging, poorly maintained building structures and narrow sidewalks (PDF p. 12).</li>
+<li><strong>Negative Enclosure Effect</strong>: High building density beyond specific thresholds and excessive sky exposure in highway-dominated corridors negatively impact overall perceived walkability (PDF pp. 8–10).</li>
+</ul>
+<h3 id="53-research-questions-mapping">5.3 Research Questions Mapping<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-research-questions-mapping" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Research Question</th><th>Corresponding Result</th><th>Supported?</th><th>Evidence Location</th></tr></thead><tbody><tr><td>RQ1: Visual element distributions</td><td>Buildings (35.07%) dominate downtown; trees (18.44%) and sky (27.63%) dominate New Territories</td><td>Yes</td><td>PDF p. 6, Table 3; Figs. 4–5</td></tr><tr><td>RQ2: Visual correlation with perception</td><td>Sidewalks strongly drive positive composite scores (effect size 0.76); trees boost beauty; buildings boost liveliness</td><td>Yes</td><td>PDF pp. 8–10, Figs. 6–7</td></tr><tr><td>RQ3: Spatial heterogeneity &amp; typology</td><td>Identified 5 distinct TOD clusters with contrasting walkability potentials and spatial structures</td><td>Yes</td><td>PDF pp. 9–11, Figs. 8–9</td></tr></tbody></table></div>
+<h2 id="6-discussion--contributions">6. Discussion &amp; Contributions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-discussion--contributions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="61-theoretical-contributions">6.1 Theoretical Contributions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-theoretical-contributions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Extends the 15-minute city theoretical model by demonstrating that physical proximity to amenities alone is insufficient for sustainable active mobility; visual human perception (safety, beauty, liveliness) acts as a critical subjective psychological mediator (PDF pp. 11–12).</p>
+<h3 id="62-methodological-contributions">6.2 Methodological Contributions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-methodological-contributions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Establishes an automated end-to-end framework integrating deep visual feature extraction (PSPNet + ViT), multi-dimensional destination accessibility metrics, non-linear regression (GAM), and unsupervised clustering at a metropolitan scale (PDF pp. 4–6).</p>
+<h3 id="63-empirical-contributions">6.3 Empirical Contributions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#63-empirical-contributions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Provides city-wide empirical evidence mapping the streetscape visual composition and perceptual quality across 103+ metro station catchments in Hong Kong, revealing spatial inequality in sidewalk provision and greenery exposure (PDF pp. 6–10).</p>
+<h3 id="64-practical--policy-implications">6.4 Practical &amp; Policy Implications<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#64-practical--policy-implications" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Sidewalk Expansion</strong>: Prioritize widening sidewalks in high-pedestrian-flow downtown TODs (Group 1) to directly elevate safety and composite walkability (PDF p. 13).</li>
+<li><strong>Targeted Greening</strong>: Introduce vertical greening and urban tree canopy programs in dense downtown catchments lacking natural vegetation (PDF p. 13).</li>
+<li><strong>Mixed-Use Strategies</strong>: Enhance land-use mix and commercial services in Group 4 new town catchments to boost local destination accessibility (PDF p. 13).</li>
+</ul>
+<h2 id="7-limitations--future-research">7. Limitations &amp; Future Research<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-limitations--future-research" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="71-author-acknowledged-limitations">7.1 Author-Acknowledged Limitations<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#71-author-acknowledged-limitations" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Spatial Resolution</strong>: Lack of micro-scale spatial breakdown distinguishing sub-district land uses (e.g., commercial vs. residential blocks) within catchments (PDF p. 13).</li>
+<li><strong>Sample Perception Bias</strong>: Perceptual models trained on global volunteers (Place Pulse 2.0) may fail to capture unique cultural preferences of local Hong Kong residents versus tourists (PDF p. 13).</li>
+<li><strong>Omission of Digitalization</strong>: Did not incorporate smart city digital tools or online services embedded in Carlos Moreno’s original 15-minute city framework (PDF p. 13).</li>
+</ul>
+<h3 id="72-unstated--further-identified-limitations">7.2 Unstated / Further Identified Limitations<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#72-unstated--further-identified-limitations" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Lack of Temporal Dynamics</strong>: Reliance on static daytime SVIs overlooks nighttime street lighting, safety perceptions, and temporal variations in pedestrian activity [Analytical Synthesis].</li>
+<li><strong>Cross-Sectional Snapshot</strong>: Using 2021 SVIs and 2023 POI data prevents causal analysis regarding how streetscape design interventions alter long-term walking behavior [Analytical Synthesis].</li>
+</ul>
+<h3 id="73-future-research-directions">7.3 Future Research Directions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#73-future-research-directions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Local vs. Non-Local Audits</strong>: Conduct comparative perceptual surveys evaluating differences between local residents and non-local visitors (PDF p. 13).</li>
+<li><strong>Microclimate Integration</strong>: Incorporate 3D solar shading, thermal comfort, and noise sensory data into walkability frameworks (PDF p. 12).</li>
+<li><strong>Digital Mobility Fusion</strong>: Fuse mobile signaling data and online service usage to capture digital-physical hybrid accessibility patterns (PDF p. 13).</li>
+</ul>
+<h2 id="8-key-evidence--quotations">8. Key Evidence &amp; Quotations<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-key-evidence--quotations" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Usage</th><th>Quote / Paraphrase</th><th>Page</th><th>Note / Reminder</th></tr></thead><tbody><tr><td>Direct Quote</td><td>”In highly accessible transit-oriented development (TOD) areas, improving pedestrian safety by expanding sidewalk width should be prioritized.”</td><td>PDF p. 1</td><td>Core practical recommendation</td></tr><tr><td>Direct Quote</td><td>”Buildings dominate the landscape, comprising an average of 35.07% of the visual composition… while trees contribute a mean of 18.44%.”</td><td>PDF p. 6</td><td>Baseline visual element breakdown</td></tr><tr><td>Paraphrase</td><td>Sidewalk composition exhibits the strongest positive influence on composite walkability perception with an effect size of 0.76 (<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.01</span></span></span></span>).</td><td>PDF p. 10</td><td>GAM empirical result</td></tr><tr><td>Paraphrase</td><td>Perceptual scores for liveliness peak in central business districts, whereas beauty and safety peak in peripheral new town areas.</td><td>PDF p. 8</td><td>Spatial perception disparity</td></tr></tbody></table></div>
+<h2 id="9-relationship-with-my-research">9. Relationship with My Research<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-relationship-with-my-research" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Target Research Topic</strong>: <em>What are the key environmental and structural limitations of Hong Kong’s traditional “Rail plus Property” TOD framework when deployed in ecologically sensitive wetland ecosystems in the Northern Metropolis?</em></p>
+<ul>
+<li><strong>Theoretical Transferability</strong>: Yu et al. (2026) demonstrate that traditional urban TOD success in Hong Kong relies on extreme spatial compactness, high building density (>35% visual exposure), and intense destination concentration [Analytical Synthesis]. When extended to the Northern Metropolis, this high-density build-out directly conflicts with ecological conservation principles requiring low built coverage and hydrological continuity in wetland buffer zones [Analytical Synthesis].</li>
+<li><strong>Reusable Methods &amp; Metrics</strong>: The PSPNet semantic segmentation pipeline can be adapted to measure ecological visual metrics (e.g., sky openness, natural water bodies, greenery visual ratio) versus artificial concrete encroachment in Northern Metropolis rail station catchments [Analytical Synthesis].</li>
+<li><strong>Empirical Baseline Comparisons</strong>: Groups 2 and 3 in Yu et al. (2026)—representing peripheral New Territories and border catchments characterized by low POI accessibility and high natural visual elements—provide a direct empirical benchmark for pre-development station environments in Northern Metropolis wetland margins [Analytical Synthesis].</li>
+<li><strong>Conceptual Conflicts &amp; Critical Gaps</strong>:
+<ul>
+<li><em>Conflict</em>: Yu et al. (2026) frame building density and commercial destination concentration as positive drivers of TOD liveliness and accessibility[cite: 1]. In wetland ecosystems, however, excessive commercial land development disrupts ecological corridors [Analytical Synthesis].</li>
+<li><em>Gap to Bridge</em>: Yu et al. (2026) omit ecological impact metrics (e.g., habitat fragmentation, artificial light pollution, impervious surface runoff)[cite: 1], presenting an opportunity to build an “Ecoregional TOD Walkability Model” tailored specifically to Northern Metropolis wetlands [Analytical Synthesis].</li>
+</ul>
+</li>
+</ul>
+<h2 id="10-literature-network">10. Literature Network<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-literature-network" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="101-key-related-papers">10.1 Key Related Papers<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#101-key-related-papers" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Related Paper</th><th>Relation Type</th><th>Explanation</th><th>Source / Evidence</th><th>Confidence</th><th>Note Status</th></tr></thead><tbody><tr><td><a href="../moreno_2021_15_minute_city" class="internal internal-link" data-slug="moreno_2021_15_minute_city">Moreno_2021_15_Minute_City</a></td><td>Theoretical Foundation</td><td>Establishes the 15-minute city conceptual framework for local accessibility</td><td>PDF p. 1</td><td>High</td><td>Pending</td></tr><tr><td><a href="../dubey_2016_deep_learning_city" class="internal internal-link" data-slug="dubey_2016_deep_learning_city">Dubey_2016_Deep_Learning_City</a></td><td>Theoretical / Method</td><td>Provides the MIT Place Pulse 2.0 dataset and pairwise perception scoring framework</td><td>PDF p. 3</td><td>High</td><td>Pending</td></tr><tr><td><a href="../hou_2024_global_streetscapes" class="internal internal-link" data-slug="hou_2024_global_streetscapes">Hou_2024_Global_Streetscapes</a></td><td>Method</td><td>Pre-trained ViT perceptual weights utilized for image scoring</td><td>PDF p. 4</td><td>High</td><td>Pending</td></tr><tr><td><a href="../liu_2024_15_minute_city_hong_kong" class="internal internal-link" data-slug="liu_2024_15_minute_city_hong_kong">Liu_2024_15_Minute_City_Hong_Kong</a></td><td>Case / Empirical</td><td>Evaluated 15-minute functional accessibility across Hong Kong</td><td>PDF p. 3</td><td>High</td><td>Pending</td></tr><tr><td><a href="../cervero_2009_rail_property_hong_kong" class="internal internal-link" data-slug="cervero_2009_rail_property_hong_kong">Cervero_2009_Rail_Property_Hong_Kong</a></td><td>Theoretical</td><td>Conceptualized Hong Kong’s Rail plus Property TOD framework</td><td>PDF p. 3</td><td>High</td><td>Pending</td></tr></tbody></table></div>
+<h3 id="102-concept-method--case-nodes">10.2 Concept, Method &amp; Case Nodes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#102-concept-method--case-nodes" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Node</th><th>Type</th><th>Role in Paper</th><th>Suggested Mapping Direction</th></tr></thead><tbody><tr><td><a href="../15-minute-city" class="internal internal-link alias" data-slug="15-minute-city">15-Minute City</a></td><td>Concept</td><td>Core urban planning paradigm defining local catchment scale</td><td>Link to active travel and proximity planning studies</td></tr><tr><td><a href="../perceived-walkability" class="internal internal-link alias" data-slug="perceived-walkability">Perceived Walkability</a></td><td>Concept</td><td>Subjective psychological score (safety, beauty, liveliness)</td><td>Link to environmental psychology and urban sensing</td></tr><tr><td><a href="../transit-oriented-development" class="internal internal-link alias" data-slug="transit-oriented-development">Transit-Oriented Development</a></td><td>Concept</td><td>High-density urban form centered on rail nodes</td><td>Link to Rail plus Property and station area planning</td></tr><tr><td><a href="../street-view-imagery" class="internal internal-link alias" data-slug="street-view-imagery">Street View Imagery</a></td><td>Data</td><td>Primary visual dataset extracted via GSV API</td><td>Link to computer vision and urban analytics</td></tr><tr><td><a href="../vision-transformer" class="internal internal-link alias" data-slug="vision-transformer">Vision Transformer</a></td><td>Method</td><td>Deep learning architecture predicting visual perceptual scores</td><td>Link to AI in urban planning and GeoAI</td></tr><tr><td><a href="../generalized-additive-model" class="internal internal-link alias" data-slug="generalized-additive-model">Generalized Additive Model</a></td><td>Method</td><td>Captures non-linear relationships between street features and perception</td><td>Link to spatial econometrics and non-linear regression</td></tr><tr><td><a href="../hong-kong" class="internal internal-link alias" data-slug="hong-kong">Hong Kong</a></td><td>Region</td><td>Geographic case study high-density metropolis</td><td>Link to compact city and East Asian urbanism</td></tr></tbody></table></div>
+<h3 id="103-network-summary">10.3 Network Summary<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#103-network-summary" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>This paper sits at the intersection of <strong>GeoAI-driven visual sensing</strong> and <strong>15-minute TOD planning</strong>. It extends the theoretical framework of the 15-minute city (<a href="../moreno_2021_15_minute_city" class="internal internal-link" data-slug="moreno_2021_15_minute_city">Moreno_2021_15_Minute_City</a>) and Rail plus Property TODs (<a href="../cervero_2009_rail_property_hong_kong" class="internal internal-link" data-slug="cervero_2009_rail_property_hong_kong">Cervero_2009_Rail_Property_Hong_Kong</a>) by shifting focus from pure spatial proximity to subjective visual perception. Methodologically, it inherits MIT’s Place Pulse perception model (<a href="../dubey_2016_deep_learning_city" class="internal internal-link" data-slug="dubey_2016_deep_learning_city">Dubey_2016_Deep_Learning_City</a>) and advances streetscape analytics via Vision Transformers (<a href="../hou_2024_global_streetscapes" class="internal internal-link" data-slug="hou_2024_global_streetscapes">Hou_2024_Global_Streetscapes</a>). In a broader literature network, it bridges computer vision research with active travel policy, providing a reference framework for evaluating human-centric walkability in ultra-dense metropolises.</p>
+<h2 id="11-research-memo">11. Research Memo<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-research-memo" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote class="callout question" data-callout="question">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Critical Questions to Pursue </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ol>
+<li>How do visual walkability requirements differ when TOD nodes are deployed in ecologically sensitive wetland buffer zones versus dense urban cores?</li>
+<li>How can local resident perception surveys be systematically integrated to calibrate global ViT machine learning models?</li>
+<li>Does higher visual walkability perception translate into actual increases in pedestrian transit-feeder trips across different age cohorts?</li>
+</ol>
+</div>
+</blockquote>
+<blockquote class="callout idea" data-callout="idea">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Transferable Methods &amp; Strategies </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li>Combining PSPNet pixel-level semantic segmentation with GAM non-linear regressions to identify optimal design thresholds for urban elements (e.g., sidewalk width vs. tree canopy cover).</li>
+<li>Integrating Shannon functional diversity entropy with cumulative POI opportunity buffers to quantify local land-use mix.</li>
+</ul>
+</div>
+</blockquote>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Methodological Limitations </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li>Findings reflect daytime urban environments and cannot be directly generalized to nighttime walking safety or microclimatic extremes (e.g., typhoon seasons or tropical heat stress).</li>
+<li>Model scores measure visual perception from street view camera angles, which may differ slightly from human eye-level perspectives or multi-sensory realities (e.g., acoustic noise, odor).</li>
+</ul>
+</div>
+</blockquote>
+<h2 id="12-citation-clues">12. Citation Clues<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-citation-clues" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Suggested Note Link</th><th>Recommendation Reason</th><th>Relation</th><th>Priority</th></tr></thead><tbody><tr><td><a href="../moreno_2021_15_minute_city" class="internal internal-link" data-slug="moreno_2021_15_minute_city">Moreno_2021_15_Minute_City</a></td><td>Foundational framework for 15-minute city concept and socio-spatial equity</td><td>Theoretical Foundation</td><td>High</td></tr><tr><td><a href="../dubey_2016_deep_learning_city" class="internal internal-link" data-slug="dubey_2016_deep_learning_city">Dubey_2016_Deep_Learning_City</a></td><td>Benchmark methodology for global crowdsourced perception scoring</td><td>Methodological Source</td><td>High</td></tr><tr><td><a href="../hou_2024_global_streetscapes" class="internal internal-link" data-slug="hou_2024_global_streetscapes">Hou_2024_Global_Streetscapes</a></td><td>Comprehensive global SVI dataset and pre-trained ViT model weights</td><td>Methodological Source</td><td>High</td></tr><tr><td><a href="../liu_2024_15_minute_city_hong_kong" class="internal internal-link" data-slug="liu_2024_15_minute_city_hong_kong">Liu_2024_15_Minute_City_Hong_Kong</a></td><td>Empirical baseline for 15-minute functional accessibility metrics in Hong Kong</td><td>Direct Comparison</td><td>High</td></tr><tr><td><a href="../cervero_2009_rail_property_hong_kong" class="internal internal-link" data-slug="cervero_2009_rail_property_hong_kong">Cervero_2009_Rail_Property_Hong_Kong</a></td><td>Classic reference on Hong Kong’s Rail plus Property TOD development model</td><td>Theoretical / Case</td><td>Medium</td></tr><tr><td><a href="../zhang_2018_human_perceptions_machine_learning" class="internal internal-link" data-slug="zhang_2018_human_perceptions_machine_learning">Zhang_2018_Human_Perceptions_Machine_Learning</a></td><td>Pioneering application of computer vision to large-scale urban visual perception</td><td>Methodological Source</td><td>Medium</td></tr><tr><td><a href="../li_2022_measuring_visual_walkability" class="internal internal-link" data-slug="li_2022_measuring_visual_walkability">Li_2022_Measuring_Visual_Walkability</a></td><td>Panoramic VR deep learning framework evaluating visual walkability</td><td>Methodological Source</td><td>Medium</td></tr><tr><td><a href="../zhou_2019_social_inequalities_visual_walkability" class="internal internal-link" data-slug="zhou_2019_social_inequalities_visual_walkability">Zhou_2019_Social_Inequalities_Visual_Walkability</a></td><td>Established the Visual Walkability Index using street view imagery</td><td>Conceptual Source</td><td>Medium</td></tr></tbody></table></div>
+<h2 id="13-minimal-review">13. Minimal Review<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-minimal-review" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>One-Sentence Question</strong>: How can visual human perception and physical destination accessibility be combined to evaluate walkability across Hong Kong’s 15-minute TOD catchments? (PDF p. 2)</li>
+<li><strong>One-Sentence Method</strong>: Fuses street view visual segmentation (PSPNet) and Vision Transformer perceptual scoring with POI accessibility metrics using Generalized Additive Models and hierarchical clustering (PDF pp. 4–6).</li>
+<li><strong>One-Sentence Conclusion</strong>: Sidewalk width is the dominant driver of perceived safety and walkability in dense TOD catchments, while visual greenery and sky openness drive suburban aesthetic appeal (PDF pp. 8–11).</li>
+<li><strong>One-Sentence Contribution</strong>: Establishes a multi-dimensional framework bridging subjective computer vision visual perception with physical proximity metrics for high-density TOD walkability planning (PDF pp. 11–12).</li>
+<li><strong>One-Sentence Limitation</strong>: Relies on static daytime images and global crowdsourced perception models without incorporating nighttime dynamics or local resident calibration (PDF p. 13).</li>
+<li><strong>Worth Reading Fine</strong>: Yes.</li>
+<li><strong>Recommendation Priority</strong>: ★★★★☆</li>
+</ul></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-15" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#characterizing-walkability-in-hong-kongs-15-minute-transit-oriented-development-tod-insights-from-street-view-imagery-and-local-accessibility" data-for="characterizing-walkability-in-hong-kongs-15-minute-transit-oriented-development-tod-insights-from-street-view-imagery-and-local-accessibility">Characterizing walkability in Hong Kong’s 15-minute transit-oriented development (TOD): insights from street view imagery and local accessibility</a></li><li class="depth-1"><a href="#1-basic-information" data-for="1-basic-information">1. Basic Information</a></li><li class="depth-1"><a href="#2-research-background--problem" data-for="2-research-background--problem">2. Research Background &amp; Problem</a></li><li class="depth-2"><a href="#21-research-background" data-for="21-research-background">2.1 Research Background</a></li><li class="depth-2"><a href="#22-literature-gap" data-for="22-literature-gap">2.2 Literature Gap</a></li><li class="depth-2"><a href="#23-research-objectives--questions" data-for="23-research-objectives--questions">2.3 Research Objectives &amp; Questions</a></li><li class="depth-1"><a href="#3-theoretical--conceptual-framework" data-for="3-theoretical--conceptual-framework">3. Theoretical &amp; Conceptual Framework</a></li><li class="depth-2"><a href="#31-core-concepts" data-for="31-core-concepts">3.1 Core Concepts</a></li><li class="depth-2"><a href="#32-theoretical-foundations" data-for="32-theoretical-foundations">3.2 Theoretical Foundations</a></li><li class="depth-2"><a href="#33-conceptual-relationships" data-for="33-conceptual-relationships">3.3 Conceptual Relationships</a></li><li class="depth-1"><a href="#4-data--methods" data-for="4-data--methods">4. Data &amp; Methods</a></li><li class="depth-2"><a href="#41-research-design" data-for="41-research-design">4.1 Research Design</a></li><li class="depth-2"><a href="#42-data" data-for="42-data">4.2 Data</a></li><li class="depth-2"><a href="#43-methodological-workflow" data-for="43-methodological-workflow">4.3 Methodological Workflow</a></li><li class="depth-2"><a href="#44-models-metrics--variables" data-for="44-models-metrics--variables">4.4 Models, Metrics &amp; Variables</a></li><li class="depth-2"><a href="#45-method-evaluation" data-for="45-method-evaluation">4.5 Method Evaluation</a></li><li class="depth-1"><a href="#5-major-findings" data-for="5-major-findings">5. Major Findings</a></li><li class="depth-2"><a href="#51-core-findings" data-for="51-core-findings">5.1 Core Findings</a></li><li class="depth-2"><a href="#52-secondary-findings--anomalies" data-for="52-secondary-findings--anomalies">5.2 Secondary Findings &amp; Anomalies</a></li><li class="depth-2"><a href="#53-research-questions-mapping" data-for="53-research-questions-mapping">5.3 Research Questions Mapping</a></li><li class="depth-1"><a href="#6-discussion--contributions" data-for="6-discussion--contributions">6. Discussion &amp; Contributions</a></li><li class="depth-2"><a href="#61-theoretical-contributions" data-for="61-theoretical-contributions">6.1 Theoretical Contributions</a></li><li class="depth-2"><a href="#62-methodological-contributions" data-for="62-methodological-contributions">6.2 Methodological Contributions</a></li><li class="depth-2"><a href="#63-empirical-contributions" data-for="63-empirical-contributions">6.3 Empirical Contributions</a></li><li class="depth-2"><a href="#64-practical--policy-implications" data-for="64-practical--policy-implications">6.4 Practical &amp; Policy Implications</a></li><li class="depth-1"><a href="#7-limitations--future-research" data-for="7-limitations--future-research">7. Limitations &amp; Future Research</a></li><li class="depth-2"><a href="#71-author-acknowledged-limitations" data-for="71-author-acknowledged-limitations">7.1 Author-Acknowledged Limitations</a></li><li class="depth-2"><a href="#72-unstated--further-identified-limitations" data-for="72-unstated--further-identified-limitations">7.2 Unstated / Further Identified Limitations</a></li><li class="depth-2"><a href="#73-future-research-directions" data-for="73-future-research-directions">7.3 Future Research Directions</a></li><li class="depth-1"><a href="#8-key-evidence--quotations" data-for="8-key-evidence--quotations">8. Key Evidence &amp; Quotations</a></li><li class="depth-1"><a href="#9-relationship-with-my-research" data-for="9-relationship-with-my-research">9. Relationship with My Research</a></li><li class="depth-1"><a href="#10-literature-network" data-for="10-literature-network">10. Literature Network</a></li><li class="depth-2"><a href="#101-key-related-papers" data-for="101-key-related-papers">10.1 Key Related Papers</a></li><li class="depth-2"><a href="#102-concept-method--case-nodes" data-for="102-concept-method--case-nodes">10.2 Concept, Method &amp; Case Nodes</a></li><li class="depth-2"><a href="#103-network-summary" data-for="103-network-summary">10.3 Network Summary</a></li><li class="depth-1"><a href="#11-research-memo" data-for="11-research-memo">11. Research Memo</a></li><li class="depth-1"><a href="#12-citation-clues" data-for="12-citation-clues">12. Citation Clues</a></li><li class="depth-1"><a href="#13-minimal-review" data-for="13-minimal-review">13. Minimal Review</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script src="../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript-3426b91c.js" type="module" data-persist="true"></script></html>

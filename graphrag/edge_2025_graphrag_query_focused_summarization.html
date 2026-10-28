@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>From Local to Global: A GraphRAG Approach to Query-Focused Summarization</title><meta charset="utf-8"/><link rel="preload" href="../index-bb6c1746.css" as="style"/><link rel="preload" href="../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Quartz 5"/><meta property="og:title" content="From Local to Global: A GraphRAG Approach to Query-Focused Summarization"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="From Local to Global: A GraphRAG Approach to Query-Focused Summarization"/><meta name="twitter:description" content="From Local to Global: A GraphRAG Approach to Query-Focused Summarization One-sentence positioning GraphRAG builds an LLM-derived entity graph, Leiden communities and community summaries, then answers global questions by map-reduce."/><meta property="og:description" content="From Local to Global: A GraphRAG Approach to Query-Focused Summarization One-sentence positioning GraphRAG builds an LLM-derived entity graph, Leiden communities and community summaries, then answers global questions by map-reduce."/><meta property="og:image:alt" content="From Local to Global: A GraphRAG Approach to Query-Focused Summarization One-sentence positioning GraphRAG builds an LLM-derived entity graph, Leiden communities and community summaries, then answers global questions by map-reduce."/><meta property="twitter:domain" content="cprime0916.github.io"/><meta property="og:url" content="https://cprime0916.github.io/graphrag/edge_2025_graphrag_query_focused_summarization"/><meta property="twitter:url" content="https://cprime0916.github.io/graphrag/edge_2025_graphrag_query_focused_summarization"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="From Local to Global: A GraphRAG Approach to Query-Focused Summarization One-sentence positioning GraphRAG builds an LLM-derived entity graph, Leiden communities and community summaries, then answers global questions by map-reduce."/><meta name="generator" content="Quartz"/><link href="../index-bb6c1746.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-11d41004.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-26a99b87.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://cprime0916.github.io/graphrag/edge_2025_graphrag_query_focused_summarization-og-image.webp"/><meta property="og:image:url" content="https://cprime0916.github.io/graphrag/edge_2025_graphrag_query_focused_summarization-og-image.webp"/><meta name="twitter:image" content="https://cprime0916.github.io/graphrag/edge_2025_graphrag_query_focused_summarization-og-image.webp"/><meta property="og:image:type" content="image/webp"/></head><body data-slug="graphrag/edge_2025_graphrag_query_focused_summarization" data-basepath><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Quartz 5</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Search" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something..." placeholder="Search for something..."/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Dark mode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Reader mode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-0" aria-label="Explorer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-0" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../graphrag/">GraphRAG</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>From Local to Global: A GraphRAG Approach to Query-Focused Summarization</a></div></nav><h1 class="article-title">From Local to Global: A GraphRAG Approach to Query-Focused Summarization</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">1</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../tags/literature" class="internal internal-link tag-link">literature</a><span class="note-properties-separator">, </span><a href="../tags/graphrag" class="internal internal-link tag-link">graphrag</a><span class="note-properties-separator">, </span><a href="../tags/rag" class="internal internal-link tag-link">rag</a><span class="note-properties-separator">, </span><a href="../tags/knowledge-graph" class="internal internal-link tag-link">knowledge-graph</a><span class="note-properties-separator">, </span><a href="../tags/llm-evaluation" class="internal internal-link tag-link">llm-evaluation</a></span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-10-08T16:00:00.000Z">Oct 09, 2026</time><span>25 min read</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="from-local-to-global-a-graphrag-approach-to-query-focused-summarization">From Local to Global: A GraphRAG Approach to Query-Focused Summarization<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#from-local-to-global-a-graphrag-approach-to-query-focused-summarization" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote class="callout abstract" data-callout="abstract">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>One-sentence positioning </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>GraphRAG builds an LLM-derived entity graph, Leiden communities and community summaries, then answers global questions by map-reduce. On two ~1M-token corpora it beats a vector-RAG baseline on LLM-judged comprehensiveness and diversity. (PDF pp. 1, 9–10)</p>
+</div>
+</blockquote>
+<p><em>Legend: <strong>[Analytical inference]</strong> (分析性归纳) marks my own judgement, not an author claim. Page numbers are PDF page numbers (they equal printed page numbers). Items I could not confirm are written as “not stated” or null.</em></p>
+<hr/>
+<h2 id="1-basic-information">1. Basic information<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-basic-information" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Field</th><th>Content</th></tr></thead><tbody><tr><td>Authors</td><td>Darren Edge, Ha Trinh (equal contribution, †), Newman Cheng, Joshua Bradley, Alex Chao, Apurva Mody, Steven Truitt, Dasha Metropolitansky, Robert Osazuwa Ness, Jonathan Larson (Microsoft Research / Strategic Missions and Technologies / Office of the CTO) (PDF p. 1)</td></tr><tr><td>Year</td><td>2025 (arXiv v2, 19 Feb 2025) (PDF p. 1)</td></tr><tr><td>Source</td><td>arXiv preprint arXiv:2404.16130v2 [cs.CL], “Preprint. Under review.” Open-source code: <a href="https://github.com/microsoft/graphrag" class="external external-link">https://github.com/microsoft/graphrag<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> (PDF pp. 1–2)</td></tr><tr><td>DOI</td><td>Not stated (null)</td></tr><tr><td>Research domains</td><td>Retrieval-augmented generation; query-focused summarization; LLM-based knowledge graph construction</td></tr><tr><td>Research type</td><td>Method paper with comparative empirical evaluation</td></tr><tr><td>Research object</td><td>Answering “global” sensemaking questions over a whole text corpus with LLMs</td></tr><tr><td>Study area</td><td>No geographic area (text corpora)</td></tr><tr><td>Spatial scale</td><td>Not applicable</td></tr><tr><td>Time range</td><td>Evaluation corpora: podcast transcripts (dates not stated) and news articles from September 2013 to December 2023 (PDF p. 8)</td></tr></tbody></table></div>
+<hr/>
+<h2 id="2-background-and-research-problem">2. Background and research problem<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-background-and-research-problem" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="21-research-background">2.1 Research background<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-research-background" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>RAG lets LLMs answer over corpora too large for the context window; in canonical RAG the system retrieves records that are individually relevant to the query and collectively fit the window. The authors call this family “vector RAG” (PDF pp. 1–2).</li>
+<li>Vector RAG “works well for queries that can be answered with information localized within a small set of records”, but not for sensemaking queries that need global understanding of an entire dataset (PDF p. 2).</li>
+<li>Sensemaking is defined via Klein et al. (2006) as reasoning over connections among people, places and events to anticipate trajectories and act effectively (PDF p. 2).</li>
+</ul>
+<h3 id="22-literature-gap-as-stated-by-the-authors">2.2 Literature gap (as stated by the authors)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-literature-gap-as-stated-by-the-authors" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>RAG “fails on global questions directed at an entire text corpus” such as “What are the main themes in the dataset?”, because such questions are query-focused summarization (QFS) tasks rather than retrieval tasks (PDF p. 1).</li>
+<li>Prior QFS methods do not scale to the text quantities indexed by typical RAG systems (PDF p. 1).</li>
+<li>Existing benchmarks (HotPotQA, MultiHop-RAG, MT-Bench) are oriented to vector-RAG performance on explicit fact retrieval, so no benchmark targets global sensemaking (PDF p. 3).</li>
+<li>Earlier graph-with-LLM approaches use subgraphs, graph elements or graph-structure properties in prompts, or let an agent traverse a graph at query time; the authors say they overlook graph modularity and nested communities (PDF p. 3).</li>
+</ol>
+<h3 id="23-research-objectives-and-questions">2.3 Research objectives and questions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-research-objectives-and-questions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Objective:</strong> a graph-based RAG approach to question answering over private text corpora that scales with both the generality of questions and the quantity of source text (PDF p. 1).</li>
+<li><strong>Implicit questions:</strong> (a) Does GraphRAG beat vector RAG on global sensemaking questions? (b) Which level of the community hierarchy gives the best trade-off? (c) Do claim-based metrics confirm the LLM-judge results? (PDF pp. 6, 9–11)</li>
+<li><strong>Hypotheses:</strong> the paper states no formal hypotheses (“原文未提出明确假设”).</li>
+</ul>
+<hr/>
+<h2 id="3-theory-and-conceptual-framework">3. Theory and conceptual framework<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-theory-and-conceptual-framework" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="31-core-concepts">3.1 Core concepts<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-core-concepts" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Concept</th><th>Definition or use in the paper</th><th>Operationalisation</th><th>Obsidian link</th></tr></thead><tbody><tr><td>Vector RAG</td><td>Conventional RAG retrieving records closest to the query in embedding space; used as a collective name for conventional approaches (PDF p. 2)</td><td>Condition “SS”: text chunks retrieved and added to the context window until the token limit (PDF p. 8)</td><td><a href="../vector_rag" class="internal internal-link" data-slug="vector_rag">Vector_RAG</a></td></tr><tr><td>GraphRAG</td><td>Graph-based RAG using an LLM-built entity knowledge graph, hierarchical communities and pre-generated community summaries (PDF p. 1)</td><td>Pipeline in Fig. 1 / Section 3.1; conditions C0–C3 (PDF pp. 4–6, 8)</td><td><a href="../graphrag" class="internal internal-link" data-slug="graphrag">GraphRAG</a></td></tr><tr><td>Global sensemaking / QFS</td><td>Questions needing understanding of the entire corpus rather than retrieval of low-level facts (PDF pp. 1–2, 6)</td><td>LLM-generated questions via Algorithm 1; 125 per dataset (PDF pp. 6–7)</td><td><a href="../global_sensemaking" class="internal internal-link" data-slug="global_sensemaking">Global_Sensemaking</a></td></tr><tr><td>Community summaries</td><td>Report-like summaries of each community in the hierarchy; usable as an index and independently (PDF p. 6)</td><td>LLM summarization of element summaries with token-limit prioritisation (PDF p. 6)</td><td><a href="../community_summaries" class="internal internal-link" data-slug="community_summaries">Community_Summaries</a></td></tr><tr><td>Adaptive benchmarking</td><td>Dynamically generating evaluation benchmarks tailored to a domain or use case (PDF p. 3)</td><td>Persona → task → question generation (PDF pp. 6–7)</td><td><a href="../adaptive_benchmarking" class="internal internal-link" data-slug="adaptive_benchmarking">Adaptive_Benchmarking</a></td></tr><tr><td>Comprehensiveness, Diversity, Empowerment, Directness</td><td>Four criteria for head-to-head judging; Directness is a “control criterion” (PDF pp. 7–8)</td><td>LLM judge prompts (App. F) and claim-based proxies for the first two (PDF pp. 9, 25)</td><td><a href="../llm_as_judge_evaluation" class="internal internal-link" data-slug="llm_as_judge_evaluation">LLM_as_Judge_Evaluation</a></td></tr></tbody></table></div>
+<h3 id="32-theoretical-foundations">3.2 Theoretical foundations<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-theoretical-foundations" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Sensemaking</strong> (Klein et al., 2006) gives the task definition → <a href="../klein_2006_making_sense_of_sensemaking" class="internal internal-link" data-slug="klein_2006_making_sense_of_sensemaking">Klein_2006_Making_Sense_of_Sensemaking</a> (PDF p. 2).</li>
+<li><strong>Graph modularity and nested community structure</strong> (Newman, 2006; Louvain; Leiden) justify partitioning the graph into hierarchical communities; the authors call this a “previously unexplored quality of graphs in this context” → <a href="../newman_2006_modularity_community_structure" class="internal internal-link" data-slug="newman_2006_modularity_community_structure">Newman_2006_Modularity_Community_Structure</a>, <a href="../traag_2019_from_louvain_to_leiden" class="internal internal-link" data-slug="traag_2019_from_louvain_to_leiden">Traag_2019_From_Louvain_to_Leiden</a> (PDF p. 3).</li>
+<li><strong>Self-memory</strong> (Cheng et al., 2024): summaries over large sections of the data are treated as a form of self-memory used later to answer queries → <a href="../cheng_2024_retrieval_augmented_self_memory" class="internal internal-link" data-slug="cheng_2024_retrieval_augmented_self_memory">Cheng_2024_Retrieval_Augmented_Self_Memory</a> (PDF p. 3).</li>
+<li><strong>LLM-as-a-judge</strong> (Zheng et al., 2024) underlies the head-to-head evaluation → <a href="../zheng_2024_llm_as_a_judge" class="internal internal-link" data-slug="zheng_2024_llm_as_a_judge">Zheng_2024_LLM_as_a_Judge</a> (PDF pp. 2, 4).</li>
+</ul>
+<h3 id="33-concept-relationships">3.3 Concept relationships<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-concept-relationships" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>The paper’s pipeline has seven stages (PDF p. 4, Fig. 1):</p>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart LR\n    A[Source documents] -->|chunking| B[Text chunks]\n    B -->|LLM extraction| C[Entities, relationships, claims]\n    C -->|aggregate and summarise| D[Knowledge graph]\n    D -->|Leiden, hierarchical| E[Graph communities]\n    E -->|LLM summarisation| F[Community summaries]\n    F -->|map: partial answers with 0-100 helpfulness| G[Community answers]\n    G -->|reduce: ranked merge| H[Global answer]&quot;">flowchart LR
+    A[Source documents] -->|chunking| B[Text chunks]
+    B -->|LLM extraction| C[Entities, relationships, claims]
+    C -->|aggregate and summarise| D[Knowledge graph]
+    D -->|Leiden, hierarchical| E[Graph communities]
+    E -->|LLM summarisation| F[Community summaries]
+    F -->|map: partial answers with 0-100 helpfulness| G[Community answers]
+    G -->|reduce: ranked merge| H[Global answer]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<p>Indexing time covers A→F; query time covers F→H (PDF p. 4).</p>
+<hr/>
+<h2 id="4-data-and-methods">4. Data and methods<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-data-and-methods" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-research-design">4.1 Research design<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-research-design" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Comparative method evaluation. Experiment 1 is pairwise head-to-head LLM-judge comparison of six conditions on four criteria across two datasets; Experiment 2 validates comprehensiveness and diversity with claim-based measures (PDF pp. 8–9). Non-parametric significance tests are reported (PDF p. 26).</p>
+<h3 id="42-data">4.2 Data<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-data" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Data or sample</th><th>Source</th><th>Quantity and time</th><th>Spatial granularity</th><th>Use</th><th>Limitation</th></tr></thead><tbody><tr><td>Podcast transcripts</td><td><em>Behind the Tech with Kevin Scott</em> (Scott, 2024) (PDF p. 8)</td><td>1,669 chunks × 600 tokens, 100-token overlap, about 1M tokens; dates not stated</td><td>Not applicable</td><td>Evaluation corpus</td><td>One podcast; domain is science and technology conversation</td></tr><tr><td>News articles</td><td>Benchmark dataset of Tang and Yang (2024), Sept 2013 – Dec 2023, categories incl. entertainment, business, sports, technology, health, science (PDF p. 8)</td><td>3,197 chunks × 600 tokens, 100-token overlap, about 1.7M tokens</td><td>Not applicable</td><td>Evaluation corpus</td><td>News only</td></tr><tr><td>Generated test questions</td><td>LLM via Algorithm 1 from short corpus descriptions (PDF pp. 6–7)</td><td>K = N = M = 5, so 125 per dataset</td><td>Not applicable</td><td>Global sensemaking test set</td><td>Question quality and diversity depend on the generating LLM; full question lists not given in the paper (examples in Table 1)</td></tr><tr><td>Extracted claims</td><td>Claimify on all answers (PDF p. 9)</td><td>47,075 unique claims; about 31 per answer</td><td>Not applicable</td><td>Experiment 2 metrics</td><td>Depends on Claimify extraction quality</td></tr><tr><td>HotPotQA sample</td><td>Yang et al. (2018) (PDF p. 18)</td><td>Size not stated</td><td>Not applicable</td><td>Chunk-size vs entity-extraction check (App. A.2)</td><td>Used only for an extraction-recall demonstration</td></tr><tr><td>MultiHop-RAG corpus index</td><td>Same corpus as the News dataset (PDF p. 19, Fig. 4)</td><td>Graph with 15,754 nodes and 19,520 edges (PDF p. 9)</td><td>Not applicable</td><td>Community-structure visualisation</td><td>Illustration only</td></tr></tbody></table></div>
+<h3 id="43-method-flow">4.3 Method flow<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#43-method-flow" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>Chunking:</strong> Documents → text chunks (600 tokens with 100-token overlap in the experiments). Larger chunks cost fewer LLM calls but degrade recall for early chunk content (PDF pp. 4, 8).</li>
+<li><strong>Entity, relationship and claim extraction:</strong> Input: a chunk. An LLM prompt returns entities (name, type, description), relationships (source, target, description, strength score) and optionally claims; few-shot exemplars can be tailored to the domain (PDF pp. 4–5, 21). Output: instance lists. Self-reflection (“gleaning”) is used to recover missed entities in larger chunks (PDF p. 18).</li>
+<li><strong>Knowledge graph:</strong> Duplicate instances are merged into nodes and edges; duplicate counts become edge weights; descriptions are summarised. Entity matching uses exact string matching in this paper (PDF p. 5).</li>
+<li><strong>Community detection:</strong> Hierarchical Leiden (graspologic) recursively partitions the graph; each level is mutually exclusive and collectively exhaustive (PDF pp. 5–6, 9).</li>
+<li><strong>Community summaries:</strong> Leaf communities: element summaries prioritised by combined node degree until the token limit. Higher levels: use element summaries if they fit, else substitute sub-community summaries (PDF p. 6).</li>
+<li><strong>Query-time map step:</strong> Summaries are randomly shuffled and split into chunks; the LLM writes partial answers in parallel and a 0–100 helpfulness score; score-0 answers are dropped (PDF p. 6).</li>
+<li><strong>Reduce step:</strong> Partial answers sorted by helpfulness and added to a new context window until the token limit; the final global answer is generated (PDF p. 6).</li>
+<li><strong>Evaluation:</strong> Algorithm 1 generates questions; an LLM judge compares answers pairwise; claim-based metrics validate the results (PDF pp. 6–9).</li>
+</ol>
+<h3 id="44-models-indicators-and-variables">4.4 Models, indicators and variables<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#44-models-indicators-and-variables" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Name</th><th>Type</th><th>Definition or calculation</th><th>Role in study</th></tr></thead><tbody><tr><td>Condition (C0, C1, C2, C3, TS, SS)</td><td>Independent variable</td><td>C0 root-level, C1 high-level, C2 intermediate-level, C3 low-level community summaries; TS map-reduce on source text; SS vector-RAG semantic search (PDF p. 8)</td><td>Systems compared; context window 8k tokens and prompts identical except context content (PDF pp. 8–9)</td></tr><tr><td>Comprehensiveness (LLM)</td><td>Indicator</td><td>How much detail the answer gives to cover all aspects of the question (PDF p. 7)</td><td>Head-to-head win rate</td></tr><tr><td>Diversity (LLM)</td><td>Indicator</td><td>How varied and rich the answer is in perspectives and insights (PDF p. 7)</td><td>Head-to-head win rate</td></tr><tr><td>Empowerment (LLM)</td><td>Indicator</td><td>How well the answer helps the reader understand and make informed judgements (PDF p. 7)</td><td>Head-to-head win rate</td></tr><tr><td>Directness (LLM)</td><td>Control indicator</td><td>How specifically and clearly the answer addresses the question; expected to oppose comprehensiveness and diversity (PDF p. 8)</td><td>Validity check on the other criteria</td></tr><tr><td>Win-rate score</td><td>Indicator</td><td>Winner scored 100, loser 0, tie 50 per question; averaged over five runs (PDF p. 26)</td><td>Basis of Fig. 2 and Table 6</td></tr><tr><td>Claim-based comprehensiveness</td><td>Indicator</td><td>Average number of unique factual claims per answer (PDF p. 9)</td><td>Experiment 2</td></tr><tr><td>Claim-based diversity</td><td>Indicator</td><td>Average number of claim clusters per answer; agglomerative clustering, complete linkage, distance 1 − ROUGE-L, thresholds 0.5–0.8 (PDF pp. 9, 12)</td><td>Experiment 2</td></tr><tr><td>Helpfulness score</td><td>Model output</td><td>0–100 score generated with each partial answer in the map step (PDF p. 6)</td><td>Ranking and filtering partial answers</td></tr><tr><td>Statistical tests</td><td>Analysis</td><td>Shapiro–Wilk (non-normal), Wilcoxon signed-rank with Holm–Bonferroni correction (PDF p. 26)</td><td>Significance of pairwise differences</td></tr></tbody></table></div>
+<p><em>Formulas:</em> The paper presents no mathematical equations. The scoring rule and clustering distance are given in prose above (PDF pp. 9, 26).</p>
+<h3 id="45-method-evaluation">4.5 Method evaluation<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#45-method-evaluation" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Soundness:</strong>
+<ul>
+<li>The design isolates context construction by holding window size, prompts and answer-generation LLM fixed across the six conditions (PDF p. 8).</li>
+<li>Including TS (graph-free global map-reduce) separates the effect of the graph index from the effect of global map-reduce (PDF p. 8).</li>
+<li>Directness as a control criterion is a sensible validity check (PDF p. 8).</li>
+<li>Claim-based metrics add an LLM-independent-of-judge check, and alignment with the LLM judge is reported (PDF p. 11).</li>
+</ul>
+</li>
+<li><strong>Improvement over prior methods (as claimed):</strong> Beyond vector RAG, it supports global questions; versus hierarchical-index approaches (e.g., RAPTOR) it adds a graph index and community-based thematic partitioning (PDF pp. 2–3).</li>
+<li><strong>Bias and validity risks [Analytical inference]:</strong>
+<ul>
+<li>The questions are global by design, which favours global methods over a vector baseline built for local retrieval. The paper does not test local or multi-hop fact questions (PDF pp. 2–3, 6).</li>
+<li>Only one vector-RAG implementation (SS, fill-to-token-limit) is compared; no hybrid, reranked, or other graph-RAG baselines (PDF p. 8).</li>
+<li>LLM-judge criteria reward breadth; a long, broad answer may win without being more accurate. No faithfulness or fabrication-rate comparison is given; the authors acknowledge this (PDF p. 11).</li>
+<li>Claim counts reward claim volume, not correctness (PDF p. 9).</li>
+<li>The context window was tuned for the baseline SS using comprehensiveness and diversity win rates (App. C), then fixed for all conditions; this is a fair attempt to strengthen the baseline but uses the same metrics as the evaluation (PDF p. 19).</li>
+<li>Two corpora of about 1–1.7M tokens; generalisation is unknown (acknowledged, PDF p. 11).</li>
+<li>GPT-4 family is the main LLM; behaviour with other LLMs is not evaluated (PDF pp. 1, 9).</li>
+</ul>
+</li>
+<li><strong>Missing for reproducibility [Analytical inference]:</strong>
+<ul>
+<li>The judge model is not separately identified in the text I read; answer-order randomisation or position-bias control is not described.</li>
+<li>Sampling temperature and other decoding settings are not given.</li>
+<li>Entity types and the few-shot exemplars per dataset are summarised only (”…More examples…”, PDF p. 21).</li>
+<li>Indexing time is reported for Podcast only (281 min); News indexing time and dollar cost are not reported (PDF p. 9).</li>
+<li>Full question sets are not reproduced; Claimify is described in a separate paper.</li>
+<li>Code is open-source (PDF p. 2).</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2 id="5-main-results">5. Main results<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-main-results" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-core-findings">5.1 Core findings<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-core-findings" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>Global approaches beat vector RAG on LLM-judged comprehensiveness and diversity.</strong>
+<ul>
+<li><em>Content:</em> All GraphRAG conditions (C0–C3) and TS beat SS. Comprehensiveness win rates 72–83% (Podcast) and 72–80% (News), p&lt;.001; diversity win rates 75–82% (p&lt;.001) and 62–71% (p&lt;.01).</li>
+<li><em>Evidence:</em> Fig. 2 and Table 6; 125 questions per comparison, five repeats (PDF pp. 9–10, 26).</li>
+<li><em>Authors’ interpretation:</em> GraphRAG substantially improves over vector RAG for global sensemaking; vector RAG is the most direct (PDF pp. 1, 9).</li>
+</ul>
+</li>
+<li><strong>Claim-based measures confirm the comprehensiveness result and partly confirm diversity.</strong>
+<ul>
+<li><em>Content:</em> SS extracted the fewest claims (25.23 News, 26.50 Podcast) versus about 31–34 for C0–C3 and TS, with p&lt;.05 in all comparisons. For diversity, all global conditions beat SS on Podcast across all thresholds; on News only C0 beats SS across all thresholds. No significant differences among global conditions or between global conditions and TS.</li>
+<li><em>Evidence:</em> Tables 3–4; 47,075 unique claims (PDF pp. 9, 11–12).</li>
+<li><em>Interpretation:</em> findings align with Experiment 1; the LLM label matched the claim-based label in 78% of non-tie comparisons for comprehensiveness and 69–70% for diversity (“moderately strong alignment”) (PDF p. 11).</li>
+</ul>
+</li>
+<li><strong>Empowerment is mixed.</strong>
+<ul>
+<li><em>Content:</em> Empowerment comparisons showed mixed results for global approaches vs SS and for GraphRAG vs TS; the authors attribute this to specific examples, quotes and citations being key to informed understanding.</li>
+<li><em>Evidence:</em> Fig. 2; Table 6 (e.g., C0 vs SS on empowerment: 42.96 vs 57.04 in Podcast and 42.72 vs 57.28 in News, both significant) (PDF pp. 9–10, 26).</li>
+<li><em>Interpretation:</em> tuning element extraction prompts may retain more detail (PDF p. 10).</li>
+</ul>
+</li>
+<li><strong>Community summaries give a small gain over source-text summarisation and use fewer tokens.</strong>
+<ul>
+<li><em>Content:</em> C2 (Podcast) and C3 (News) reach comprehensiveness win rates of 57% and 64% over TS (p&lt;.001); diversity 57% (p=.036) and 60% (p&lt;.001). C3 needs 26–33% fewer context tokens than TS; C0 needs over 97% fewer.</li>
+<li><em>Evidence:</em> Table 2, Table 6 (PDF pp. 10, 26).</li>
+<li><em>Interpretation:</em> scalability advantage of GraphRAG over TS (PDF p. 10).</li>
+</ul>
+</li>
+<li><strong>Root-level summaries (C0) offer an efficient option.</strong>
+<ul>
+<li><em>Content:</em> C0 retains a 72% comprehensiveness and 62% diversity win rate over vector RAG at a small fraction of the tokens.</li>
+<li><em>Evidence:</em> Table 2 (2.6% and 2.3% of the TS token count) and text (PDF pp. 10, 12).</li>
+<li><em>Interpretation:</em> suited to the many global queries that characterise sensemaking over one dataset (PDF pp. 10, 12).</li>
+</ul>
+</li>
+</ol>
+<h3 id="52-secondary-findings-and-anomalies">5.2 Secondary findings and anomalies<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-secondary-findings-and-anomalies" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Fig. 2 caption vs Table 6:</strong> The caption says C1–C3 slightly improve over TS; Table 6 shows significance only for some cells (comprehensiveness: C2, C3 in Podcast, C1–C3 in News; diversity: C2 in Podcast, C3 in News) (PDF pp. 10, 26). Several C0–TS comparisons are non-significant.</li>
+<li><strong>Empowerment and directness patterns:</strong> C0 loses to TS on empowerment in both datasets and to SS in both datasets; TS beats SS on empowerment in Podcast only (57.52, p&lt;.001) (PDF p. 26). Directness favours SS across conditions, as expected for the control criterion (PDF pp. 8–9).</li>
+<li><strong>Graph sizes:</strong> Podcast 8,564 nodes and 20,691 edges; News 15,754 nodes and 19,520 edges (PDF p. 9). Table 2 gives numbers of community summaries per level (Podcast C0–C3: 34, 367, 969, 1,310; News: 55, 555, 1,797, 2,142) (PDF p. 10).</li>
+<li><strong>Table 2 caption:</strong> says C0 requires “9x–43x” fewer tokens per query; the text says over 97% fewer. The basis of the lower end (9x) is not explained in the text I read (PDF p. 10).</li>
+<li><strong>Context-window selection:</strong> 8k beat 16k, 32k and 64k for SS on comprehensiveness (average win rate 58.1%), with comparable diversity (52.4%) and empowerment (51.3%) (PDF p. 19).</li>
+<li><strong>Chunk size and gleaning:</strong> On a HotPotQA sample GPT-4 extracted almost twice as many entity references with 600-token chunks as with 2,400-token chunks; self-reflection iterations let larger chunks avoid that drop (PDF p. 18).</li>
+<li><strong>Indexing cost:</strong> Podcast indexing took 281 minutes on a VM using gpt-4-turbo (PDF p. 9).</li>
+<li><strong>Exact ties:</strong> claim-based exact ties were rare, and results were sensitive to any tie threshold, so alignment analysis used only non-tie LLM labels (33% of comparisons for comprehensiveness, 39% for diversity) (PDF p. 11).</li>
+</ul>
+<h3 id="53-mapping-to-research-questions">5.3 Mapping to research questions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-mapping-to-research-questions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Question</th><th>Result</th><th>Supported?</th><th>Evidence</th></tr></thead><tbody><tr><td>Does GraphRAG outperform vector RAG on global sensemaking?</td><td>Higher comprehensiveness and diversity win rates; more claims</td><td>Yes (for LLM-judged and claim-based breadth)</td><td>Fig. 2, Tables 3–4, 6; PDF pp. 9–12, 26</td></tr><tr><td>Does it improve empowerment?</td><td>Mixed; C0 worse than SS and TS</td><td>Not supported</td><td>Fig. 2, Table 6; PDF pp. 9–10, 26</td></tr><tr><td>Does the graph index beat graph-free global map-reduce (TS)?</td><td>Small gains at C2/C3; no significant claim-based differences</td><td>Partly</td><td>Table 6; Tables 3–4; PDF pp. 10–12</td></tr><tr><td>Which hierarchy level is best?</td><td>Intermediate (Podcast) or low (News) for comprehensiveness; C0 for efficiency</td><td>Partly</td><td>PDF pp. 10, 26</td></tr><tr><td>Do claim-based metrics validate the LLM judge?</td><td>78% (comprehensiveness) and 69–70% (diversity) agreement on non-ties</td><td>Partly (moderately strong)</td><td>PDF p. 11</td></tr></tbody></table></div>
+<hr/>
+<h2 id="6-discussion-and-contributions">6. Discussion and contributions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-discussion-and-contributions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="61-theoretical-contribution">6.1 Theoretical contribution<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-theoretical-contribution" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Frames global sensemaking over a corpus as a QFS problem distinct from retrieval (PDF p. 1).</li>
+<li>Positions graph modularity and community hierarchy as a basis for recursive, scalable summarisation (PDF p. 3).</li>
+<li><strong>[Analytical inference]</strong> No new theory is tested; the contribution is conceptual framing plus an architecture.</li>
+</ul>
+<h3 id="62-methodological-contribution">6.2 Methodological contribution<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-methodological-contribution" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>GraphRAG indexing and query pipeline, with hierarchical community summaries and map-reduce answering (PDF pp. 4–6).</li>
+<li>Adaptive benchmarking: persona → task → question generation of global questions (Algorithm 1) (PDF pp. 6–7).</li>
+<li>Criteria set (comprehensiveness, diversity, empowerment, directness) and claim-based validation (PDF pp. 7–9).</li>
+</ul>
+<h3 id="63-empirical-contribution">6.3 Empirical contribution<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#63-empirical-contribution" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Evidence that graph-index global approaches beat a vector baseline on breadth criteria for two ~1M-token corpora, with cost evidence showing community summaries need fewer query-time tokens than source-text map-reduce (PDF pp. 9–12).</p>
+<h3 id="64-practical-or-policy-implications">6.4 Practical or policy implications<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#64-practical-or-policy-implications" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>The authors suggest root-level community summaries as an efficient index for many global queries over one dataset (PDF p. 12).</li>
+<li>They note GraphRAG may mitigate the risk of “samples of retrieved facts falsely presented as global summaries” compared with vector RAG, <strong>a prospect, not a tested result</strong>; they also warn of risks if answers misrepresent the source and recommend disclosures of AI use (PDF p. 12).</li>
+<li>Versions are available in LangChain, LlamaIndex, NebulaGraph and Neo4j (PDF p. 2).</li>
+</ul>
+<hr/>
+<h2 id="7-limitations-and-future-research">7. Limitations and future research<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-limitations-and-future-research" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="71-limitations-explicitly-acknowledged-by-the-authors">7.1 Limitations explicitly acknowledged by the authors<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#71-limitations-explicitly-acknowledged-by-the-authors" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Evaluation covers sensemaking questions on two corpora of roughly 1M tokens; generalisation across domains and use cases is unknown (PDF p. 11).</li>
+<li>Comparison of fabrication rates (e.g., with SelfCheckGPT) would strengthen the analysis (PDF p. 11).</li>
+<li>Empowerment weakness may stem from lost examples, quotes and citations in the graph index (PDF p. 10).</li>
+<li>Entity matching uses exact string matching; softer approaches are possible (PDF p. 5).</li>
+<li>Risk of downstream errors if answers misrepresent source data (PDF p. 12).</li>
+</ul>
+<h3 id="72-further-limitations-identified-analytical-inference">7.2 Further limitations identified <strong>[Analytical inference]</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#72-further-limitations-identified-analytical-inference" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>Question-type bias.</strong> Only global questions are evaluated, so the result does not show GraphRAG’s behaviour on local, fact-seeking or multi-hop queries where vector RAG is said to work well (basis: PDF pp. 2, 6).</li>
+<li><strong>Single baseline family.</strong> Only one vector-RAG implementation; no reranking, hybrid, or alternative graph-RAG comparison (basis: PDF p. 8).</li>
+<li><strong>Judge dependence.</strong> All Experiment 1 results rely on an LLM judge; the judge identity, order-randomisation and position-bias handling are not described (basis: PDF pp. 7–9).</li>
+<li><strong>Breadth metrics favour long answers.</strong> Claim count and cluster count do not measure correctness (basis: PDF p. 9).</li>
+<li><strong>Indexing cost and update cost.</strong> Only one indexing time (Podcast) is reported; the cost of rebuilding the graph after corpus changes is not discussed (basis: PDF pp. 9, 12).</li>
+<li><strong>Quality of the extracted graph is not evaluated directly.</strong> Entity-resolution errors, missed relationships or extraction hallucinations are not measured; the claim that GraphRAG is “generally resilient to duplicate entities” is stated, not tested (basis: PDF p. 5).</li>
+<li><strong>Domain-specific corpora.</strong> Tests use general podcast and news text, not specialised technical literature, though the paper suggests domain-tailored prompts (basis: PDF pp. 5, 8).</li>
+<li><strong>No agent or decision-making evaluation.</strong> The system is used as a single question-answering pipeline, not as a tool inside multi-agent workflows (basis: whole paper).</li>
+</ol>
+<h3 id="73-future-research-directions">7.3 Future research directions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#73-future-research-directions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Authors’ suggestions:</strong> RAG approaches operating more locally via embedding-based matching of queries and graph annotations; hybrid schemes combining embedding matching with just-in-time community report generation; “roll-up” across hierarchy levels; “drill-down” following the information scent in higher-level summaries (PDF p. 12).</li>
+<li><strong>Analytical suggestions [Analytical inference]:</strong> evaluate on multi-hop and local question benchmarks against strong vector/hybrid baselines; report faithfulness; measure graph-extraction quality; study incremental index updates; evaluate in multi-agent settings with shared graph memory.</li>
+</ul>
+<hr/>
+<h2 id="8-key-evidence-and-quotable-content">8. Key evidence and quotable content<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-key-evidence-and-quotable-content" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Use</th><th>Original short quote or accurate paraphrase</th><th>Page</th><th>Reminder</th></tr></thead><tbody><tr><td>Problem</td><td>”RAG fails on global questions directed at an entire text corpus”</td><td>PDF p. 1</td><td>Verbatim fragment from the abstract</td></tr><tr><td>Definition</td><td>Vector RAG “works well for queries that can be answered with information localized within a small set of records.”</td><td>PDF p. 2</td><td>Verbatim; the authors’ characterisation of vector RAG</td></tr><tr><td>Method</td><td>Paraphrase: an LLM builds an entity knowledge graph, hierarchical Leiden communities are summarised bottom-up, and queries are answered by map-reduce over community summaries.</td><td>PDF pp. 1–2, 5–6</td><td>Paraphrase</td></tr><tr><td>Distinctive idea</td><td>GraphRAG “contrasts with these approaches by focusing on a previously unexplored quality of graphs in this context: their inherent modularity”</td><td>PDF p. 3</td><td>Verbatim; sentence continues with Newman (2006)</td></tr><tr><td>Result</td><td>”GraphRAG leads to substantial improvements over a conventional RAG baseline for both the comprehensiveness and diversity of generated answers”</td><td>PDF p. 1</td><td>Verbatim; applies to global questions on about 1M-token datasets</td></tr><tr><td>Result</td><td>Paraphrase: empowerment comparisons were mixed for global approaches vs vector RAG and for GraphRAG vs source-text summarisation.</td><td>PDF p. 9</td><td>Paraphrase</td></tr><tr><td>Limitation</td><td>”More work is needed to understand how performance generalizes to datasets from various domains with different use cases.”</td><td>PDF p. 11</td><td>Verbatim</td></tr><tr><td>Conclusion</td><td>”summaries of root-level communities in the entity-based graph index provide a data index that is both superior to vector RAG and achieves competitive performance to other global methods at a fraction of the token cost”</td><td>PDF p. 12</td><td>Verbatim; applies to situations with many global queries over one dataset</td></tr></tbody></table></div>
+<hr/>
+<h2 id="9-relation-to-my-research">9. Relation to my research<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-relation-to-my-research" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Research context (user-supplied).</strong> Overall: How can Graph AI tools (especially GraphRAG) be used to define research gaps and solution space to support the integration of TOD and NbS design for reducing hydrological and ecological impacts near San Tin Technopole? Focus: How does GraphRAG improve multi-hop reasoning, context retrieval, and decision-making in multi-agent LLM systems compared to standard vector-based RAG?</p>
+<p><strong>Overall relevance [Analytical inference]:</strong> High for the GraphRAG-vs-vector-RAG part of the focus topic (it is the primary GraphRAG source), but partial: the paper evaluates global sensemaking, not multi-hop reasoning, not multi-agent systems, and not decision quality or any TOD/NbS/hydrology domain.</p>
+<ul>
+<li><strong>Theory to borrow:</strong>
+<ul>
+<li>Sensemaking as reasoning over connections (Klein et al. via PDF p. 2).</li>
+<li>Graph modularity and hierarchical community structure as an organising principle for corpus-level understanding (PDF p. 3).</li>
+<li>The query-focused-summarisation vs retrieval distinction as a way to separate “find a fact” from “understand the whole corpus” (PDF p. 1).</li>
+</ul>
+</li>
+<li><strong>Reusable methods and indicators:</strong>
+<ul>
+<li>Domain-tailorable entity, relationship and claim extraction prompts (PDF pp. 4–5, 21); <strong>[Analytical inference]</strong> these could be tailored with hydrology, ecology and transit-oriented-development exemplars.</li>
+<li>Hierarchical community summaries that can be scanned for themes without a query (PDF p. 6); <strong>[Analytical inference]</strong> a candidate route to map research themes and gaps in a literature corpus.</li>
+<li>Algorithm 1 (persona → task → question) for building a domain test set (PDF pp. 6–7); <strong>[Analytical inference]</strong> personas could be planners, hydrologists, ecologists.</li>
+<li>Head-to-head LLM-judge criteria and claim-based validation (PDF pp. 7–9, 25–26).</li>
+</ul>
+</li>
+<li><strong>Comparable data or cases:</strong> None domain-specific. The corpora are about 1M–1.7M tokens (PDF p. 8); <strong>[Analytical inference]</strong> a literature corpus on TOD, NbS and San Tin could fall in a similar size range, but this is not tested.</li>
+<li><strong>Arguments it can support:</strong>
+<ul>
+<li>For global, corpus-level questions, a graph-community index outperforms a vector-RAG baseline on breadth (comprehensiveness, diversity) (PDF pp. 9–12).</li>
+<li>The index can cut query-time tokens relative to source-text map-reduce (PDF p. 10).</li>
+<li>Graph-structured summaries can serve as a reusable thematic index (PDF pp. 6, 12).</li>
+</ul>
+</li>
+<li><strong>Possible conflicts or cautions:</strong>
+<ul>
+<li>It does not demonstrate improved multi-hop reasoning; it explicitly says existing multi-hop-style benchmarks target vector-RAG fact retrieval and builds its own global-question set (PDF p. 3).</li>
+<li>Empowerment (understanding and informed judgement) does not improve, and C0 is worse than the vector baseline on it (PDF pp. 9–10, 26); this matters if “decision-making” is the outcome of interest.</li>
+<li>Costs: indexing is LLM-heavy (281 min for 1M tokens) and update costs are not discussed (PDF p. 9).</li>
+</ul>
+</li>
+<li><strong>Research gaps this suggests:</strong>
+<ul>
+<li>Graph-based vs vector retrieval inside multi-agent LLM workflows (shared graph memory, role-specific retrieval).</li>
+<li>Evaluation on multi-hop and local questions and on decision tasks, with faithfulness measures.</li>
+<li>Domain-specific corpora (environmental planning, hydrology, ecology) and extraction quality for technical text.</li>
+<li>Hybrid local-global schemes, which the authors themselves propose (PDF p. 12).</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2 id="10-literature-relationship-network">10. Literature relationship network<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-literature-relationship-network" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><em>No existing Obsidian notes were provided (“無”). The links below are unresolved links built from this paper’s text and reference list; all are marked “To create”. Re-validate once other notes are added.</em></p>
+<h3 id="101-strong-relationships">10.1 Strong relationships<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#101-strong-relationships" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Linked paper</th><th>Relation type</th><th>Explanation</th><th>Basis</th><th>Confidence</th><th>Note status</th></tr></thead><tbody><tr><td><a href="../lewis_2020_retrieval_augmented_generation" class="internal internal-link" data-slug="lewis_2020_retrieval_augmented_generation">Lewis_2020_Retrieval_Augmented_Generation</a></td><td>Extension</td><td>GraphRAG extends canonical RAG to global queries over an entire corpus</td><td>PDF pp. 1–2</td><td>High</td><td>To create</td></tr><tr><td><a href="../klein_2006_making_sense_of_sensemaking" class="internal internal-link" data-slug="klein_2006_making_sense_of_sensemaking">Klein_2006_Making_Sense_of_Sensemaking</a></td><td>Theoretical foundation</td><td>Source of the sensemaking definition used to frame global questions</td><td>PDF p. 2</td><td>High</td><td>To create</td></tr><tr><td><a href="../newman_2006_modularity_community_structure" class="internal internal-link" data-slug="newman_2006_modularity_community_structure">Newman_2006_Modularity_Community_Structure</a></td><td>Theoretical foundation</td><td>Graph modularity underpins the community-partitioning rationale</td><td>PDF p. 3</td><td>High</td><td>To create</td></tr><tr><td><a href="../cheng_2024_retrieval_augmented_self_memory" class="internal internal-link" data-slug="cheng_2024_retrieval_augmented_self_memory">Cheng_2024_Retrieval_Augmented_Self_Memory</a></td><td>Theoretical foundation</td><td>Community summaries are treated as a form of “self-memory”</td><td>PDF p. 3</td><td>High</td><td>To create</td></tr><tr><td><a href="../traag_2019_from_louvain_to_leiden" class="internal internal-link" data-slug="traag_2019_from_louvain_to_leiden">Traag_2019_From_Louvain_to_Leiden</a></td><td>Method similar</td><td>Leiden algorithm used (via graspologic) for hierarchical community detection</td><td>PDF pp. 3, 5, 9</td><td>High</td><td>To create</td></tr><tr><td><a href="../sarthi_2024_raptor" class="internal internal-link" data-slug="sarthi_2024_raptor">Sarthi_2024_RAPTOR</a></td><td>Method similar</td><td>Hierarchical-index summarisation approach the authors say GraphRAG resembles; GraphRAG instead builds a graph index with community detection</td><td>PDF p. 3</td><td>High</td><td>To create</td></tr><tr><td><a href="../wang_2023_knowledge_graph_prompting" class="internal internal-link" data-slug="wang_2023_knowledge_graph_prompting">Wang_2023_Knowledge_Graph_Prompting</a></td><td>Method similar</td><td>Uses a knowledge graph to enhance retrieval with an LLM agent traversing a graph at query time; the authors contrast GraphRAG’s pre-computed community summaries</td><td>PDF p. 3</td><td>Medium</td><td>To create</td></tr><tr><td><a href="../he_2024_g_retriever" class="internal internal-link" data-slug="he_2024_g_retriever">He_2024_G_Retriever</a></td><td>Method similar</td><td>Cited with other techniques that put subgraphs or graph properties in the prompt</td><td>PDF p. 3</td><td>Medium</td><td>To create</td></tr><tr><td><a href="../zheng_2024_llm_as_a_judge" class="internal internal-link" data-slug="zheng_2024_llm_as_a_judge">Zheng_2024_LLM_as_a_Judge</a></td><td>Method similar</td><td>Head-to-head LLM-as-a-judge evaluation adapted to questions without ground truth</td><td>PDF pp. 2, 4</td><td>High</td><td>To create</td></tr><tr><td><a href="../metropolitansky_2025_effective_extraction_factual_claims" class="internal internal-link" data-slug="metropolitansky_2025_effective_extraction_factual_claims">Metropolitansky_2025_Effective_Extraction_Factual_Claims</a></td><td>Method similar</td><td>Claimify used to extract factual claims for Experiment 2</td><td>PDF p. 9</td><td>High</td><td>To create</td></tr><tr><td><a href="../padmakumar_2024_writing_content_diversity" class="internal internal-link" data-slug="padmakumar_2024_writing_content_diversity">Padmakumar_2024_Writing_Content_Diversity</a></td><td>Method similar</td><td>Clustering approach adopted for the diversity metric</td><td>PDF p. 9</td><td>High</td><td>To create</td></tr><tr><td><a href="../tang_2024_multihop_rag" class="internal internal-link" data-slug="tang_2024_multihop_rag">Tang_2024_MultiHop_RAG</a></td><td>Data similar</td><td>Source of the News articles corpus; also used for the community-structure illustration</td><td>PDF pp. 8, 19</td><td>High</td><td>To create</td></tr><tr><td><a href="../yang_2018_hotpotqa" class="internal internal-link" data-slug="yang_2018_hotpotqa">Yang_2018_HotpotQA</a></td><td>Data similar</td><td>HotPotQA sample used in the chunk-size and self-reflection check; also cited as a benchmark oriented to vector-RAG fact retrieval</td><td>PDF pp. 3, 18</td><td>High</td><td>To create</td></tr></tbody></table></div>
+<h3 id="102-concept-method-and-case-nodes">10.2 Concept, method and case nodes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#102-concept-method-and-case-nodes" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Node</th><th>Type</th><th>Role in this paper</th><th>Suggested connection direction</th></tr></thead><tbody><tr><td><a href="../graphrag" class="internal internal-link" data-slug="graphrag">GraphRAG</a></td><td>Concept</td><td>The proposed approach</td><td>Graph-based RAG papers, RAG surveys, multi-agent memory papers</td></tr><tr><td><a href="../vector_rag" class="internal internal-link" data-slug="vector_rag">Vector_RAG</a></td><td>Concept</td><td>Baseline family (condition SS)</td><td>RAG baselines, embedding retrieval papers</td></tr><tr><td><a href="../retrieval_augmented_generation" class="internal internal-link" data-slug="retrieval_augmented_generation">Retrieval_Augmented_Generation</a></td><td>Domain</td><td>Parent field</td><td>RAG surveys and benchmarks</td></tr><tr><td><a href="../query_focused_summarization" class="internal internal-link" data-slug="query_focused_summarization">Query_Focused_Summarization</a></td><td>Domain</td><td>Task framing for global questions</td><td>Summarisation papers</td></tr><tr><td><a href="../global_sensemaking" class="internal internal-link" data-slug="global_sensemaking">Global_Sensemaking</a></td><td>Concept</td><td>Target task type</td><td>Sensemaking and corpus-analysis papers</td></tr><tr><td><a href="../community_summaries" class="internal internal-link" data-slug="community_summaries">Community_Summaries</a></td><td>Concept</td><td>Core index element</td><td>Hierarchical-summary indexes, thematic mapping</td></tr><tr><td><a href="../llm_knowledge_graph_extraction" class="internal internal-link" data-slug="llm_knowledge_graph_extraction">LLM_Knowledge_Graph_Extraction</a></td><td>Method</td><td>Builds the entity graph from text</td><td>KG construction papers</td></tr><tr><td><a href="../knowledge_graph_construction_with_llms" class="internal internal-link" data-slug="knowledge_graph_construction_with_llms">Knowledge_Graph_Construction_with_LLMs</a></td><td>Domain</td><td>Parent field of the extraction step</td><td>KG construction and reasoning surveys</td></tr><tr><td><a href="../leiden_community_detection" class="internal internal-link" data-slug="leiden_community_detection">Leiden_Community_Detection</a></td><td>Method</td><td>Hierarchical partitioning</td><td>Network-science and graph-clustering papers</td></tr><tr><td><a href="../map_reduce_query_focused_summarization" class="internal internal-link" data-slug="map_reduce_query_focused_summarization">Map_Reduce_Query_Focused_Summarization</a></td><td>Method</td><td>Query-time answering over summaries</td><td>Long-context summarisation papers</td></tr><tr><td><a href="../llm_as_judge_evaluation" class="internal internal-link" data-slug="llm_as_judge_evaluation">LLM_as_Judge_Evaluation</a></td><td>Method</td><td>Head-to-head evaluation</td><td>Evaluation-methodology papers</td></tr><tr><td><a href="../claim_based_evaluation" class="internal internal-link" data-slug="claim_based_evaluation">Claim_Based_Evaluation</a></td><td>Method</td><td>Claim counts and clusters</td><td>Faithfulness and diversity evaluation papers</td></tr><tr><td><a href="../adaptive_benchmarking" class="internal internal-link" data-slug="adaptive_benchmarking">Adaptive_Benchmarking</a></td><td>Concept</td><td>LLM-generated corpus-specific question sets</td><td>Benchmark-generation papers</td></tr><tr><td><a href="../persona_based_question_generation" class="internal internal-link" data-slug="persona_based_question_generation">Persona_Based_Question_Generation</a></td><td>Method</td><td>Persona → task → question pipeline</td><td>Synthetic test-set papers</td></tr><tr><td><a href="../news_articles_multihop_rag_dataset" class="internal internal-link" data-slug="news_articles_multihop_rag_dataset">News_Articles_MultiHop_RAG_Dataset</a></td><td>Data</td><td>News corpus used for evaluation</td><td>Other papers using MultiHop-RAG</td></tr></tbody></table></div>
+<p><em>The Podcast corpus node in the YAML is a one-off data node and is not repeated here.</em></p>
+<h3 id="103-relationship-summary">10.3 Relationship summary<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#103-relationship-summary" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Built from this paper’s text and references only (no existing notes). The paper sits at the junction of RAG, knowledge-graph construction and query-focused summarisation, extending canonical vector RAG to corpus-level questions. It takes sensemaking from Klein, modularity from Newman, and the Leiden algorithm from Traag, and is close to RAPTOR-style hierarchical indexing while differing in using entity graphs and communities. Its evaluation branch (LLM-as-judge, claim-based checks, persona-generated questions) makes it a bridge to evaluation-methodology work. The node <a href="../llm_as_judge_evaluation" class="internal internal-link" data-slug="llm_as_judge_evaluation">LLM_as_Judge_Evaluation</a> is shared with the earlier OASIS note in this conversation (Yang_2025_OASIS_Million_Agent_Simulation); this is a shared-method link only, not a strong paper relation. Re-validate after adding other notes.</p>
+<hr/>
+<h2 id="11-post-reading-memo">11. Post-reading memo<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-post-reading-memo" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote class="callout question" data-callout="question">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Questions worth pursuing </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ol>
+<li>Does GraphRAG’s advantage persist on multi-hop and local questions against strong hybrid or reranked vector baselines?</li>
+<li>How would a multi-agent system use community summaries or the graph: per-role retrieval, shared memory, or drill-down from C0 to lower levels?</li>
+<li>How accurate is the LLM-extracted graph on technical corpora (hydrology, ecology, planning), and how do entity-matching errors propagate?</li>
+<li>Can the community hierarchy be used directly to detect thematic gaps (sparse or isolated communities), and how would that be validated?</li>
+<li>What does the empowerment drop at root level imply for decision-support use, and can citation-preserving extraction fix it?</li>
+</ol>
+</div>
+</blockquote>
+<blockquote class="callout idea" data-callout="idea">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Transferable methods or ideas </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li>Persona → task → question generation to build a domain test set without gold answers.</li>
+<li>Four-criterion head-to-head judging with a control criterion (Directness) and a claim-based cross-check.</li>
+<li>Using hierarchical community summaries as a browsable thematic map of a corpus.</li>
+<li>Map-reduce answering with 0–100 helpfulness scores to filter and rank partial answers.</li>
+</ul>
+</div>
+</blockquote>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Limits on use </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Results apply to global sensemaking questions on two English corpora of about 1–1.7M tokens with GPT-4-family models and an LLM judge. They do not show gains for multi-hop reasoning, local fact retrieval, multi-agent systems, decision quality, or domain-specific technical corpora. Faithfulness was not compared.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="12-reference-leads">12. Reference leads<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-reference-leads" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Suggested note link</th><th>Reason</th><th>Relation to this paper</th><th>Priority</th></tr></thead><tbody><tr><td><a href="../wang_2023_knowledge_graph_prompting" class="internal internal-link" data-slug="wang_2023_knowledge_graph_prompting">Wang_2023_Knowledge_Graph_Prompting</a></td><td>KG-based retrieval with an LLM agent traversing a graph for multi-document QA; closest to the multi-hop and agent angle</td><td>Key contrast</td><td>High</td></tr><tr><td><a href="../sarthi_2024_raptor" class="internal internal-link" data-slug="sarthi_2024_raptor">Sarthi_2024_RAPTOR</a></td><td>Hierarchical summary-tree retrieval; main non-graph comparator</td><td>Key contrast</td><td>High</td></tr><tr><td><a href="../he_2024_g_retriever" class="internal internal-link" data-slug="he_2024_g_retriever">He_2024_G_Retriever</a></td><td>Graph RAG for textual graph understanding and QA</td><td>Related method</td><td>High</td></tr><tr><td><a href="../tang_2024_multihop_rag" class="internal internal-link" data-slug="tang_2024_multihop_rag">Tang_2024_MultiHop_RAG</a></td><td>Multi-hop RAG benchmark and the source of the News corpus</td><td>Data source / benchmark</td><td>High</td></tr><tr><td><a href="../cheng_2024_retrieval_augmented_self_memory" class="internal internal-link" data-slug="cheng_2024_retrieval_augmented_self_memory">Cheng_2024_Retrieval_Augmented_Self_Memory</a></td><td>Self-memory idea behind community summaries; links to agent memory</td><td>Theoretical foundation</td><td>Medium</td></tr><tr><td><a href="../gao_2023_rag_survey" class="internal internal-link" data-slug="gao_2023_rag_survey">Gao_2023_RAG_Survey</a></td><td>RAG survey cited for vector RAG and KG-as-index approaches</td><td>Survey entry</td><td>Medium</td></tr><tr><td><a href="../zhu_2024_llms_for_kg_construction_and_reasoning" class="internal internal-link" data-slug="zhu_2024_llms_for_kg_construction_and_reasoning">Zhu_2024_LLMs_for_KG_Construction_and_Reasoning</a></td><td>Cited on how prompt engineering affects KG extraction quality (bibliographic details incomplete in the reference list; information to be checked)</td><td>Method source</td><td>Medium</td></tr><tr><td><a href="../traag_2019_from_louvain_to_leiden" class="internal internal-link" data-slug="traag_2019_from_louvain_to_leiden">Traag_2019_From_Louvain_to_Leiden</a></td><td>The community detection algorithm used</td><td>Method source</td><td>Medium</td></tr><tr><td><a href="../zheng_2024_llm_as_a_judge" class="internal internal-link" data-slug="zheng_2024_llm_as_a_judge">Zheng_2024_LLM_as_a_Judge</a></td><td>Evaluation method for answers without ground truth</td><td>Method source</td><td>Medium</td></tr><tr><td><a href="../metropolitansky_2025_effective_extraction_factual_claims" class="internal internal-link" data-slug="metropolitansky_2025_effective_extraction_factual_claims">Metropolitansky_2025_Effective_Extraction_Factual_Claims</a></td><td>Claim extraction used for validation (bibliographic details incomplete in the reference list; information to be checked)</td><td>Method source</td><td>Medium</td></tr></tbody></table></div>
+<hr/>
+<h2 id="13-quick-recap">13. Quick recap<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-quick-recap" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>One-sentence research question:</strong> How can RAG answer global, corpus-wide sensemaking questions that vector retrieval cannot?</li>
+<li><strong>One-sentence method:</strong> An LLM builds an entity graph, hierarchical Leiden communities and summaries, then answers queries by map-reduce over community summaries, evaluated by pairwise LLM judging and claim-based metrics on two ~1M-token corpora.</li>
+<li><strong>One-sentence conclusion:</strong> GraphRAG beats a vector-RAG baseline on comprehensiveness and diversity (not on empowerment or directness), and root-level summaries do so at a fraction of the token cost.</li>
+<li><strong>One-sentence contribution:</strong> A scalable graph-index approach to global QFS plus an adaptive-benchmarking evaluation protocol for questions without ground truth.</li>
+<li><strong>One-sentence limitation:</strong> Only global questions, two corpora, one vector baseline and LLM-judged breadth metrics, with no faithfulness, multi-hop or multi-agent evaluation.</li>
+<li><strong>Worth close reading:</strong> Yes for the GraphRAG-vs-vector-RAG focus topic; partial for multi-hop and multi-agent aspects.</li>
+<li><strong>Recommended priority:</strong> ★★★★☆</li>
+</ul></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-0" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#from-local-to-global-a-graphrag-approach-to-query-focused-summarization" data-for="from-local-to-global-a-graphrag-approach-to-query-focused-summarization">From Local to Global: A GraphRAG Approach to Query-Focused Summarization</a></li><li class="depth-1"><a href="#1-basic-information" data-for="1-basic-information">1. Basic information</a></li><li class="depth-1"><a href="#2-background-and-research-problem" data-for="2-background-and-research-problem">2. Background and research problem</a></li><li class="depth-2"><a href="#21-research-background" data-for="21-research-background">2.1 Research background</a></li><li class="depth-2"><a href="#22-literature-gap-as-stated-by-the-authors" data-for="22-literature-gap-as-stated-by-the-authors">2.2 Literature gap (as stated by the authors)</a></li><li class="depth-2"><a href="#23-research-objectives-and-questions" data-for="23-research-objectives-and-questions">2.3 Research objectives and questions</a></li><li class="depth-1"><a href="#3-theory-and-conceptual-framework" data-for="3-theory-and-conceptual-framework">3. Theory and conceptual framework</a></li><li class="depth-2"><a href="#31-core-concepts" data-for="31-core-concepts">3.1 Core concepts</a></li><li class="depth-2"><a href="#32-theoretical-foundations" data-for="32-theoretical-foundations">3.2 Theoretical foundations</a></li><li class="depth-2"><a href="#33-concept-relationships" data-for="33-concept-relationships">3.3 Concept relationships</a></li><li class="depth-1"><a href="#4-data-and-methods" data-for="4-data-and-methods">4. Data and methods</a></li><li class="depth-2"><a href="#41-research-design" data-for="41-research-design">4.1 Research design</a></li><li class="depth-2"><a href="#42-data" data-for="42-data">4.2 Data</a></li><li class="depth-2"><a href="#43-method-flow" data-for="43-method-flow">4.3 Method flow</a></li><li class="depth-2"><a href="#44-models-indicators-and-variables" data-for="44-models-indicators-and-variables">4.4 Models, indicators and variables</a></li><li class="depth-2"><a href="#45-method-evaluation" data-for="45-method-evaluation">4.5 Method evaluation</a></li><li class="depth-1"><a href="#5-main-results" data-for="5-main-results">5. Main results</a></li><li class="depth-2"><a href="#51-core-findings" data-for="51-core-findings">5.1 Core findings</a></li><li class="depth-2"><a href="#52-secondary-findings-and-anomalies" data-for="52-secondary-findings-and-anomalies">5.2 Secondary findings and anomalies</a></li><li class="depth-2"><a href="#53-mapping-to-research-questions" data-for="53-mapping-to-research-questions">5.3 Mapping to research questions</a></li><li class="depth-1"><a href="#6-discussion-and-contributions" data-for="6-discussion-and-contributions">6. Discussion and contributions</a></li><li class="depth-2"><a href="#61-theoretical-contribution" data-for="61-theoretical-contribution">6.1 Theoretical contribution</a></li><li class="depth-2"><a href="#62-methodological-contribution" data-for="62-methodological-contribution">6.2 Methodological contribution</a></li><li class="depth-2"><a href="#63-empirical-contribution" data-for="63-empirical-contribution">6.3 Empirical contribution</a></li><li class="depth-2"><a href="#64-practical-or-policy-implications" data-for="64-practical-or-policy-implications">6.4 Practical or policy implications</a></li><li class="depth-1"><a href="#7-limitations-and-future-research" data-for="7-limitations-and-future-research">7. Limitations and future research</a></li><li class="depth-2"><a href="#71-limitations-explicitly-acknowledged-by-the-authors" data-for="71-limitations-explicitly-acknowledged-by-the-authors">7.1 Limitations explicitly acknowledged by the authors</a></li><li class="depth-2"><a href="#72-further-limitations-identified-analytical-inference" data-for="72-further-limitations-identified-analytical-inference">7.2 Further limitations identified [Analytical inference]</a></li><li class="depth-2"><a href="#73-future-research-directions" data-for="73-future-research-directions">7.3 Future research directions</a></li><li class="depth-1"><a href="#8-key-evidence-and-quotable-content" data-for="8-key-evidence-and-quotable-content">8. Key evidence and quotable content</a></li><li class="depth-1"><a href="#9-relation-to-my-research" data-for="9-relation-to-my-research">9. Relation to my research</a></li><li class="depth-1"><a href="#10-literature-relationship-network" data-for="10-literature-relationship-network">10. Literature relationship network</a></li><li class="depth-2"><a href="#101-strong-relationships" data-for="101-strong-relationships">10.1 Strong relationships</a></li><li class="depth-2"><a href="#102-concept-method-and-case-nodes" data-for="102-concept-method-and-case-nodes">10.2 Concept, method and case nodes</a></li><li class="depth-2"><a href="#103-relationship-summary" data-for="103-relationship-summary">10.3 Relationship summary</a></li><li class="depth-1"><a href="#11-post-reading-memo" data-for="11-post-reading-memo">11. Post-reading memo</a></li><li class="depth-1"><a href="#12-reference-leads" data-for="12-reference-leads">12. Reference leads</a></li><li class="depth-1"><a href="#13-quick-recap" data-for="13-quick-recap">13. Quick recap</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-0" class="overflow"><li><a href="../graphrag/peng_2024_graph_retrieval_augmented_generation_survey" class="internal">Graph Retrieval-Augmented Generation: A Survey</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script src="../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript-3426b91c.js" type="module" data-persist="true"></script></html>

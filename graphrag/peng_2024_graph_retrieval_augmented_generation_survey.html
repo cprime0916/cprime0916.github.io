@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>Graph Retrieval-Augmented Generation: A Survey</title><meta charset="utf-8"/><link rel="preload" href="../index-bb6c1746.css" as="style"/><link rel="preload" href="../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Quartz 5"/><meta property="og:title" content="Graph Retrieval-Augmented Generation: A Survey"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Graph Retrieval-Augmented Generation: A Survey"/><meta name="twitter:description" content="Graph Retrieval-Augmented Generation: A Survey One-sentence positioning The first broad survey of GraphRAG."/><meta property="og:description" content="Graph Retrieval-Augmented Generation: A Survey One-sentence positioning The first broad survey of GraphRAG."/><meta property="og:image:alt" content="Graph Retrieval-Augmented Generation: A Survey One-sentence positioning The first broad survey of GraphRAG."/><meta property="twitter:domain" content="cprime0916.github.io"/><meta property="og:url" content="https://cprime0916.github.io/graphrag/peng_2024_graph_retrieval_augmented_generation_survey"/><meta property="twitter:url" content="https://cprime0916.github.io/graphrag/peng_2024_graph_retrieval_augmented_generation_survey"/><link rel="icon" href="../static/icon.png"/><meta name="description" content="Graph Retrieval-Augmented Generation: A Survey One-sentence positioning The first broad survey of GraphRAG."/><meta name="generator" content="Quartz"/><link href="../index-bb6c1746.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-11d41004.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-26a99b87.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://cprime0916.github.io/graphrag/peng_2024_graph_retrieval_augmented_generation_survey-og-image.webp"/><meta property="og:image:url" content="https://cprime0916.github.io/graphrag/peng_2024_graph_retrieval_augmented_generation_survey-og-image.webp"/><meta name="twitter:image" content="https://cprime0916.github.io/graphrag/peng_2024_graph_retrieval_augmented_generation_survey-og-image.webp"/><meta property="og:image:type" content="image/webp"/></head><body data-slug="graphrag/peng_2024_graph_retrieval_augmented_generation_survey" data-basepath><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="..">Quartz 5</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Search" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something..." placeholder="Search for something..."/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Dark mode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Reader mode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-2" aria-label="Explorer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-2" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../graphrag/">GraphRAG</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Graph Retrieval-Augmented Generation: A Survey</a></div></nav><h1 class="article-title">Graph Retrieval-Augmented Generation: A Survey</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">1</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../tags/literature" class="internal internal-link tag-link">literature</a><span class="note-properties-separator">, </span><a href="../tags/graphrag" class="internal internal-link tag-link">graphrag</a><span class="note-properties-separator">, </span><a href="../tags/survey" class="internal internal-link tag-link">survey</a><span class="note-properties-separator">, </span><a href="../tags/rag" class="internal internal-link tag-link">rag</a><span class="note-properties-separator">, </span><a href="../tags/knowledge-graph" class="internal internal-link tag-link">knowledge-graph</a><span class="note-properties-separator">, </span><a href="../tags/llm" class="internal internal-link tag-link">llm</a></span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-10-08T16:00:00.000Z">Oct 09, 2026</time><span>24 min read</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="graph-retrieval-augmented-generation-a-survey">Graph Retrieval-Augmented Generation: A Survey<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#graph-retrieval-augmented-generation-a-survey" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote class="callout abstract" data-callout="abstract">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>One-sentence positioning </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>The first broad survey of GraphRAG. It formalises a three-stage workflow (G-Indexing, G-Retrieval, G-Generation), catalogues techniques, training, tasks, benchmarks and industry systems, and lists open challenges. It is a taxonomy, not an empirical comparison. (PDF pp. 1, 3, 7–8, 29–30)</p>
+</div>
+</blockquote>
+<p><em>Legend: <strong>[Analytical inference]</strong> (分析性归纳) marks my own judgement, not an author claim. Page numbers are PDF page numbers (the PDF is 41 pages; the PDF page number equals the printed page 111:N minus 110). Items I could not confirm are written as “not stated” or null.</em></p>
+<hr/>
+<h2 id="1-basic-information">1. Basic information<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-basic-information" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Field</th><th>Content</th></tr></thead><tbody><tr><td>Authors</td><td>Boci Peng*, Yun Zhu* (equal contribution), Yongchao Liu, Xiaohe Bo, Haizhou Shi, Chuntao Hong, Yan Zhang† (corresponding), Siliang Tang. Affiliations: Peking University, Zhejiang University, Ant Group, Renmin University of China, Rutgers University (PDF p. 1)</td></tr><tr><td>Year</td><td>2024 (arXiv v2, 10 Sep 2024) (PDF p. 1)</td></tr><tr><td>Source</td><td>arXiv:2408.08921v2 [cs.AI]; typeset as J. ACM 37(4), Article 111, Sep 2024. Companion repository: <a href="https://github.com/pengboci/GraphRAG-Survey" class="external external-link">https://github.com/pengboci/GraphRAG-Survey<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> (PDF pp. 1–2)</td></tr><tr><td>DOI</td><td>Not stated; the paper shows only a placeholder (“XXXXXXX.XXXXXXX”), so null (PDF pp. 1–2)</td></tr><tr><td>Research domains</td><td>Retrieval-augmented generation; knowledge graphs; graph neural networks; LLMs</td></tr><tr><td>Research type</td><td>Survey / literature review</td></tr><tr><td>Research object</td><td>Methods that retrieve graph elements (nodes, triplets, paths, subgraphs) to augment LLM generation</td></tr><tr><td>Study area</td><td>No geographic area</td></tr><tr><td>Spatial scale</td><td>Not applicable</td></tr><tr><td>Time range</td><td>Literature up to about mid-2024 (references include 2024 arXiv papers, e.g., Aug 2024); the review window is not stated (PDF pp. 31–41)</td></tr></tbody></table></div>
+<hr/>
+<h2 id="2-background-and-research-problem">2. Background and research problem<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-background-and-research-problem" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="21-research-background">2.1 Research background<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-research-background" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>LLMs lack domain-specific knowledge, real-time information and proprietary knowledge, which can cause “hallucination”; RAG supplements them with retrieved external text (PDF p. 2).</li>
+<li>GraphRAG retrieves graph elements “containing relational knowledge” from a pre-constructed graph database instead of text snippets (PDF pp. 2–3, Fig. 1).</li>
+</ul>
+<h3 id="22-literature-gap-as-stated-by-the-authors">2.2 Literature gap (as stated by the authors)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-literature-gap-as-stated-by-the-authors" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>Limits of traditional RAG</strong> that motivate GraphRAG (PDF p. 2):
+<ul>
+<li><em>Neglecting relationships:</em> text is interconnected, and RAG misses relational knowledge not captured by semantic similarity (example: citation links between papers).</li>
+<li><em>Redundant information:</em> concatenated snippets make long contexts and the “lost in the middle” problem.</li>
+<li><em>Lacking global information:</em> RAG retrieves only a subset of documents, so it struggles with Query-Focused Summarization (QFS).</li>
+</ul>
+</li>
+<li><strong>Gap in prior surveys:</strong> earlier RAG surveys touch on GraphRAG but concentrate on textual data; this survey emphasises indexing, retrieval and use of structured graph data (PDF p. 5).</li>
+<li><strong>Gap relative to LLMs-on-graphs and KBQA surveys:</strong> GraphRAG retrieves graph elements from an external graph database using queries, which previous surveys on LLMs on graphs do not cover; KBQA is a subset (IR-based) of GraphRAG applications (PDF p. 5).</li>
+</ol>
+<h3 id="23-research-objectives-and-questions">2.3 Research objectives and questions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-research-objectives-and-questions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Objective:</strong> to give a systematic review of GraphRAG, with a formal definition and a universal workflow, plus techniques, training methods, tasks, benchmarks, application domains, metrics, industry systems, challenges and future directions (PDF pp. 3–4).</li>
+<li><strong>Contributions (stated, PDF p. 3):</strong> (1) a comprehensive review with a formal definition and the G-Indexing / G-Retrieval / G-Generation workflow; (2) analysis of core technologies and training methods per stage; (3) tasks, benchmarks, domains, metrics, challenges, future directions and an inventory of industry systems.</li>
+<li><strong>Hypotheses:</strong> none (“原文未提出明确假设”); it is a survey.</li>
+</ul>
+<hr/>
+<h2 id="3-theory-and-conceptual-framework">3. Theory and conceptual framework<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-theory-and-conceptual-framework" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="31-core-concepts">3.1 Core concepts<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-core-concepts" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Concept</th><th>Definition or use in the paper</th><th>Operationalisation</th><th>Obsidian link</th></tr></thead><tbody><tr><td>GraphRAG</td><td>”Framework that leverages external structured knowledge graphs to improve contextual understanding of LMs” (paraphrased from PDF p. 7); retrieves nodes, triples, paths or subgraphs</td><td>Three stages: G-Indexing, G-Retrieval, G-Generation (PDF pp. 7–8)</td><td><a href="../graphrag" class="internal internal-link" data-slug="graphrag">GraphRAG</a></td></tr><tr><td>Vector RAG / traditional RAG</td><td>RAG that retrieves text snippets, chiefly by semantic similarity; the survey treats it as the baseline that GraphRAG improves on (PDF p. 2)</td><td>Not defined as a separate formal object</td><td><a href="../vector_rag" class="internal internal-link" data-slug="vector_rag">Vector_RAG</a></td></tr><tr><td>Text-Attributed Graph (TAG)</td><td>Graph with textual attributes on nodes and edges; knowledge graphs are a typical case (PDF p. 6)</td><td>G = (V, E, A, {x_v}, {e_ij}) (PDF p. 6)</td><td><a href="../text_attributed_graph" class="internal internal-link" data-slug="text_attributed_graph">Text_Attributed_Graph</a></td></tr><tr><td>Graph-Based Indexing (G-Indexing)</td><td>Identify or construct a graph database and establish indices; determines retrieval granularity (PDF p. 7)</td><td>Graph, text, vector and hybrid indexing (PDF pp. 9–10)</td><td><a href="../graph_based_indexing" class="internal internal-link" data-slug="graph_based_indexing">Graph_Based_Indexing</a></td></tr><tr><td>Graph-Guided Retrieval (G-Retrieval)</td><td>Extract relevant elements (entities, triplets, paths, subgraphs) given a query (PDF p. 7)</td><td>Retriever type × paradigm × granularity × enhancement (PDF pp. 10–17)</td><td><a href="../graph_guided_retrieval" class="internal internal-link" data-slug="graph_guided_retrieval">Graph_Guided_Retrieval</a></td></tr><tr><td>Graph-Enhanced Generation (G-Generation)</td><td>Synthesise outputs from retrieved graph data and the query (PDF p. 8)</td><td>Generators, graph formats, generation enhancement (PDF pp. 17–22)</td><td><a href="../graph_enhanced_generation" class="internal internal-link" data-slug="graph_enhanced_generation">Graph_Enhanced_Generation</a></td></tr><tr><td>Retrieval granularity</td><td>Form of retrieved knowledge: nodes, triplets, paths, subgraphs, hybrid (PDF pp. 13–15)</td><td>Taxonomy in Section 6.3</td><td><a href="../retrieval_granularity" class="internal internal-link" data-slug="retrieval_granularity">Retrieval_Granularity</a></td></tr><tr><td>Multi-hop reasoning</td><td>Used in the text only through “n-hop paths”, “2-hop reasoning”, “reasoning chains” (PDF pp. 9, 13–14); no separate definition</td><td>Indirect: path retrieval, iterative retrieval, query decomposition</td><td><a href="../multi_hop_reasoning" class="internal internal-link" data-slug="multi_hop_reasoning">Multi_Hop_Reasoning</a></td></tr></tbody></table></div>
+<h3 id="32-theoretical-foundations">3.2 Theoretical foundations<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-theoretical-foundations" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Message-passing GNNs:</strong> classical GNNs (GCN, GAT, GraphSAGE) are defined through a message / aggregate / update scheme (Eq. 1) and a readout (Eq. 2) used for retrieval and generation components (PDF p. 6) → <a href="../graphrag/kipf_2017_semi_supervised_graph_convolutional_networks" class="internal internal-link" data-slug="graphrag/kipf_2017_semi_supervised_graph_convolutional_networks">Kipf_2017_Semi_Supervised_Graph_Convolutional_Networks</a>.</li>
+<li><strong>Probabilistic decomposition of GraphRAG:</strong> the answer distribution p(a | q, 𝒢) is decomposed into a graph retriever p_θ and an answer generator p_φ (Eqs. 3–4) (PDF p. 7). No new theory is claimed.</li>
+<li><strong>Language models:</strong> discriminative (BERT, RoBERTa, SentenceBERT) and generative (GPT, LLaMA) models as retrieval and generation components (PDF p. 6).</li>
+</ul>
+<h3 id="33-concept-relationships">3.3 Concept relationships<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#33-concept-relationships" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>The workflow has three stages with enhancement steps (PDF pp. 4, 7–8, Fig. 2):</p>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart LR\n    A[\&quot;Graph data: open KGs or self-constructed\&quot;] --> B[\&quot;G-Indexing: graph, text, vector, hybrid\&quot;]\n    B --> C[\&quot;G-Retrieval: retriever, paradigm, granularity\&quot;]\n    Q[\&quot;Query enhancement: expansion, decomposition\&quot;] --> C\n    C --> K[\&quot;Knowledge enhancement: merging, pruning\&quot;]\n    K --> D[\&quot;G-Generation: generator, graph format\&quot;]\n    D --> E[\&quot;Generation enhancement: pre, mid, post\&quot;]\n    E --> R[\&quot;Response\&quot;]&quot;">flowchart LR
+    A[&quot;Graph data: open KGs or self-constructed&quot;] --> B[&quot;G-Indexing: graph, text, vector, hybrid&quot;]
+    B --> C[&quot;G-Retrieval: retriever, paradigm, granularity&quot;]
+    Q[&quot;Query enhancement: expansion, decomposition&quot;] --> C
+    C --> K[&quot;Knowledge enhancement: merging, pruning&quot;]
+    K --> D[&quot;G-Generation: generator, graph format&quot;]
+    D --> E[&quot;Generation enhancement: pre, mid, post&quot;]
+    E --> R[&quot;Response&quot;]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<hr/>
+<h2 id="4-data-and-methods">4. Data and methods<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-data-and-methods" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-research-design">4.1 Research design<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-research-design" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Narrative, taxonomy-based literature review. The survey organises GraphRAG work by workflow stage (Sections 5–7), then training (Section 8), applications and evaluation (Section 9) and future directions (Section 10). <strong>[Analytical inference]</strong> The text I read does not describe a review protocol (databases searched, search strings, date window, inclusion or exclusion criteria, or the number of papers screened).</p>
+<h3 id="42-data-literature-and-resources-covered">4.2 Data (literature and resources covered)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-data-literature-and-resources-covered" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Data or sample</th><th>Source</th><th>Quantity and time</th><th>Spatial granularity</th><th>Use</th><th>Limitation</th></tr></thead><tbody><tr><td>Reviewed GraphRAG and related papers</td><td>Reference list (PDF pp. 31–41)</td><td>Number of reviewed works not stated; in-text citations reach [204] (PDF p. 5); includes papers up to 2024</td><td>Not applicable</td><td>Taxonomy construction</td><td>Selection process not described</td></tr><tr><td>Open knowledge graphs</td><td>Wikidata, Freebase, DBpedia, YAGO, ConceptNet, ATOMIC; domain KGs CMeKG, CPubMed-KG, Wiki-Movies, GR-Bench, GraphQA (PDF pp. 8–9)</td><td>As listed</td><td>Not applicable</td><td>Examples of graph data sources</td><td>Counts and sizes not given</td></tr><tr><td>Self-constructed graph data</td><td>Document graphs, entity-relation KGs from text, patent-phrase graph, customer-service issue graphs (PDF p. 9)</td><td>Examples only</td><td>Not applicable</td><td>Examples of graph construction</td><td>Method-specific</td></tr><tr><td>Benchmarks and tasks</td><td>Table 1: KBQA (WebQSP, WebQ, CWQ, GrailQA, QALD10-en, SimpleQuestions, MetaQA, Natural Question, TriviaQA, HotpotQA, Mintaka, FreebaseQA), CSQA, EL, RE, fact verification, link prediction, dialogue, recommendation (PDF p. 25)</td><td>As listed</td><td>Not applicable</td><td>Overview of evaluation practice</td><td>Table only maps methods to benchmarks; it reports no scores</td></tr><tr><td>GraphRAG-specific benchmarks</td><td>STARK, GraphQA, GRBench (1,740 questions, 10 domain graphs per PDF p. 28), CRAG (PDF pp. 27–28)</td><td>As listed</td><td>Not applicable</td><td>Evaluation of GraphRAG systems</td><td>The text gives “five domain knowledge graphs” for GR-Bench on p. 9 vs “10 domain graphs” on p. 28 (see 5.2)</td></tr><tr><td>Industrial systems</td><td>Microsoft GraphRAG, NebulaGraph GraphRAG, Ant Group GraphRAG (DB-GPT, OpenSPG, TuGraph), NaLLM and LLM Graph Builder (Neo4j) (PDF pp. 28–29)</td><td>Five systems</td><td>Not applicable</td><td>Industry inventory</td><td>Descriptions are brief</td></tr></tbody></table></div>
+<h3 id="43-method-flow-organisation-of-the-survey">4.3 Method flow (organisation of the survey)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#43-method-flow-organisation-of-the-survey" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>Context and positioning:</strong> motivation (Section 1), comparison with RAG, LLMs on graphs and KBQA (Section 2) (PDF pp. 2–5).</li>
+<li><strong>Preliminaries:</strong> TAGs, GNNs, language models (Section 3) (PDF pp. 5–6).</li>
+<li><strong>Formal overview:</strong> Equations 3–6 and the three-stage workflow (Section 4) (PDF pp. 7–8).</li>
+<li><strong>Stage-by-stage taxonomy:</strong> G-Indexing (Section 5), G-Retrieval (Section 6), G-Generation (Section 7) (PDF pp. 8–22).</li>
+<li><strong>Training:</strong> retriever, generator and joint training (Section 8) (PDF pp. 23–24).</li>
+<li><strong>Applications and evaluation:</strong> tasks, domains, benchmarks, metrics, industry (Section 9) (PDF pp. 24–29).</li>
+<li><strong>Outlook and conclusion:</strong> Sections 10–11 (PDF pp. 29–31).</li>
+</ol>
+<h3 id="44-models-indicators-and-variables">4.4 Models, indicators and variables<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#44-models-indicators-and-variables" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>This is a survey, so there is no own model. The paper gives formal definitions (numbering as in the paper).</p>
+<p>Text-attributed graph (PDF p. 6):</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7805em;vertical-align:-0.0972em;"></span><span class="mord mathcal" style="margin-right:0.0593em;">G</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mopen">(</span><span class="mord mathcal" style="margin-right:0.0822em;">V</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.0894em;">E</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">v</span><span class="mrel mtight">∈</span><span class="mord mathcal mtight" style="margin-right:0.0822em;">V</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1774em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">}</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span><span class="mrel mtight">∈</span><span class="mord mathcal mtight" style="margin-right:0.0894em;">E</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<p><em>V</em> nodes; <em>E ⊆ V × V</em> edges; <em>A ∈ {0,1}^{|V|×|V|}</em> adjacency matrix; <em>x_v</em> and <em>e_ij</em> textual attributes of nodes and edges.</p>
+<p>GNN message passing and readout (PDF p. 6):</p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: \tag works only in display equations" style="color:#cc0000;">h_i^{(l)}=\mathrm{UPD}\Big(h_i^{(l-1)},\ \mathrm{AGG}_{j\in\mathcal N(i)}\,\mathrm{MSG}\big(h_i^{(l-1)},h_j^{(l-1)},e_{i,j}\big)\Big)\tag{1}</span><br/>
+<span class="katex-error" title="ParseError: KaTeX parse error: \tag works only in display equations" style="color:#cc0000;">h_G=\mathrm{READOUT}_{i\in\mathcal V_G}\big(h_i^{(L)}\big)\tag{2}</span></p>
+<p><em>N(i)</em> neighbours of node <em>i</em>; <em>MSG</em> message function; <em>AGG</em> permutation-invariant aggregation (mean, sum, max); <em>UPD</em> update function; <em>READOUT</em> pooling. The layer superscript on <em>e_ij</em> in Eq. 1 was not reliably extracted from the PDF, so check the original.</p>
+<p>GraphRAG objective and decomposition (PDF p. 7):</p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: \tag works only in display equations" style="color:#cc0000;">a^*=\arg\max_{a\in A}\,p(a\mid q,\mathcal G)\tag{3}</span><br/>
+<span class="katex-error" title="ParseError: KaTeX parse error: \tag works only in display equations" style="color:#cc0000;">p(a\mid q,\mathcal G)=\sum_{G\subseteq\mathcal G}p_\phi(a\mid q,G)\,p_\theta(G\mid q,\mathcal G)\approx p_\phi(a\mid q,G^*)\,p_\theta(G^*\mid q,\mathcal G)\tag{4}</span></p>
+<p><em>q</em> query; <em>A</em> set of possible responses; <em>p_θ</em> graph retriever; <em>p_φ</em> answer generator; <em>θ, φ</em> learnable parameters; <em>G*</em> optimal subgraph. The approximation is needed because the number of candidate subgraphs grows exponentially with graph size.</p>
+<p>Retrieval and generation stages (PDF pp. 7–8):</p>
+<p><span class="katex-error" title="ParseError: KaTeX parse error: \tag works only in display equations" style="color:#cc0000;">G^*=\text{G-Retriever}(q,\mathcal G)=\arg\max_{G\subseteq R(\mathcal G)}p_\theta(G\mid q,\mathcal G)=\arg\max_{G\subseteq R(\mathcal G)}\mathrm{Sim}(q,G)\tag{5}</span><br/>
+<span class="katex-error" title="ParseError: KaTeX parse error: \tag works only in display equations" style="color:#cc0000;">a^*=\text{G-Generator}(q,G^*)=\arg\max_{a\in A}p_\phi(a\mid q,G^*)=\arg\max_{a\in A}p_\phi\big(a\mid\mathcal F(q,G^*)\big)\tag{6}</span></p>
+<p><em>Sim(·,·)</em> similarity between the query and graph data; <em>R(·)</em> narrows the search range of subgraphs for efficiency; <em>F(·,·)</em> converts graph data into a form the generator can process.</p>
+<p><strong>Evaluation indicators discussed (not computed by the survey)</strong> (PDF p. 28): Exact Match (EM), F1, Accuracy, BLEU, ROUGE-L, METEOR for generation; ratio of answer coverage to retrieved-subgraph size, query relevance, diversity and faithfulness for retrieval quality.</p>
+<h3 id="45-method-evaluation">4.5 Method evaluation<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#45-method-evaluation" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Soundness:</strong> The workflow decomposition (index, retrieve, generate) with explicit formal definitions gives a usable common vocabulary, and the stage-by-stage taxonomy is easy to map onto individual systems (PDF pp. 7–8).</li>
+<li><strong>Improvement over prior surveys (as claimed):</strong> First comprehensive overview of GraphRAG and greater emphasis on graph data indexing and retrieval than earlier RAG surveys (PDF pp. 1, 3, 5).</li>
+<li><strong>Bias and validity risks [Analytical inference]:</strong>
+<ul>
+<li>No stated search or inclusion protocol, so coverage and selection bias cannot be assessed.</li>
+<li>Mostly descriptive: apart from one illustrative example (Fig. 1), the text gives no quantitative synthesis or head-to-head comparison of GraphRAG vs vector RAG.</li>
+<li>The benefit statements (“more precise and comprehensive”, “significantly enhances relevance, accuracy, and comprehensiveness”, PDF pp. 1, 31) are supported by citations to individual papers, not by evidence collected in this survey.</li>
+<li>The survey is heavily weighted to knowledge-graph QA (Table 1), so findings may not transfer to corpus-derived graphs or other tasks.</li>
+<li>Most cited work is arXiv preprints from 2023–2024; peer-review status of many items is not indicated.</li>
+</ul>
+</li>
+<li><strong>Missing for reproducibility [Analytical inference]:</strong> list of papers screened, search dates, classification rules for ambiguous methods (the authors admit boundaries between granularities and between pre-generation enhancement and retrieval are blurry, PDF pp. 15, 21), and any coding scheme.</li>
+</ul>
+<hr/>
+<h2 id="5-main-results">5. Main results<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-main-results" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="51-core-findings-main-syntheses-of-the-review">5.1 Core findings (main syntheses of the review)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#51-core-findings-main-syntheses-of-the-review" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>GraphRAG is positioned as a response to three RAG limitations, and a three-stage workflow is proposed.</strong>
+<ul>
+<li><em>Content:</em> Neglected relationships, redundant context (“lost in the middle”) and missing global information are addressed by retrieving graph elements; the workflow is G-Indexing → G-Retrieval → G-Generation.</li>
+<li><em>Evidence:</em> Introduction, Fig. 1 (illustrative example), Fig. 2, Eqs. 3–6 (PDF pp. 2–4, 7–8).</li>
+<li><em>Authors’ interpretation:</em> Graph data offers abstraction and summarisation that shorten the input, and subgraphs or communities help QFS (PDF p. 2).</li>
+</ul>
+</li>
+<li><strong>Graph retrieval design involves explicit trade-offs among retriever type, paradigm and granularity.</strong>
+<ul>
+<li><em>Content:</em> Non-parametric retrievers are efficient but may be inaccurate; LM- and GNN-based retrievers are more accurate but cost more computation, so hybrid and multi-stage designs are common. Once retrieval suits real-time use; iterative retrieval costs more time but can be more accurate. Finer granularities (nodes, triplets) favour speed and simple queries; complex scenarios often benefit from hybrid granularity.</li>
+<li><em>Evidence:</em> Sections 6.1.4, 6.2.4, 6.3.6 (PDF pp. 12–13, 15).</li>
+<li><em>Authors’ interpretation:</em> choose by balancing accuracy and time complexity for the use case (PDF p. 13).</li>
+</ul>
+</li>
+<li><strong>Multi-step reasoning on graphs is handled mainly through path retrieval, iterative or adaptive retrieval, query decomposition and LLM agents.</strong>
+<ul>
+<li><em>Content:</em> Triplet retrieval alone may “lack contextual breadth and depth” for indirect relationships; path methods (rule-based n-hop paths, ToG beam search, plan-then-retrieve methods such as RoG) capture reasoning chains but face exponential path growth; adaptive retrieval lets the model decide when to stop (hop prediction, special tokens, LLM agents).</li>
+<li><em>Evidence:</em> Sections 6.2.2, 6.3.2–6.3.3, 6.4.1 (PDF pp. 12–16).</li>
+<li><em>Authors’ interpretation:</em> path and subgraph granularity offer richer relational context (PDF p. 14).</li>
+</ul>
+</li>
+<li><strong>Generation needs a graph-to-model interface, and each interface has costs.</strong>
+<ul>
+<li><em>Content:</em> Graph languages (edge tables, natural language, code-like forms, syntax trees, node sequences) should be complete, concise and comprehensible; choice affects downstream performance. Graph embeddings avoid long contexts but struggle to preserve precise entity names and generalise poorly, and need open-source LMs.</li>
+<li><em>Evidence:</em> Sections 7.2.1–7.2.2 (PDF pp. 19–21).</li>
+<li><em>Authors’ interpretation:</em> hybrid GNN+LM generators are promising but integrating the two modalities remains a challenge (PDF p. 19).</li>
+</ul>
+</li>
+<li><strong>The evaluation landscape is fragmented.</strong>
+<ul>
+<li><em>Content:</em> Table 1 maps methods to QA, IE and other tasks and benchmarks; metrics split into downstream task quality and retrieval quality; GraphRAG-specific benchmarks (STARK, GraphQA, GRBench, CRAG) exist, but “unified and standard benchmarks” are lacking.</li>
+<li><em>Evidence:</em> Section 9, Table 1, Section 10.6 (PDF pp. 25–28, 30).</li>
+</ul>
+</li>
+<li><strong>Open challenges listed.</strong>
+<ul>
+<li><em>Content:</em> Dynamic and adaptive graphs; multimodal integration; scalable retrieval (most methods are built for small KGs, thousands of entities per PDF p. 29); graph foundation models; lossless context compression; standard benchmarks; broader applications (healthcare, finance, legal, smart cities and IoT).</li>
+<li><em>Evidence:</em> Section 10 (PDF pp. 29–30).</li>
+</ul>
+</li>
+</ol>
+<h3 id="52-secondary-findings-and-anomalies">5.2 Secondary findings and anomalies<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#52-secondary-findings-and-anomalies" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Industrial systems:</strong> Microsoft GraphRAG is described as building entity-based KGs and pre-generating community summaries to capture local and global relationships for QFS; the Ant Group system retrieves via keyword-to-node lookup with BFS or DFS subgraph traversal (PDF pp. 28–29).</li>
+<li><strong>Hybrid indexing:</strong> HybridRAG retrieves vector and graph data simultaneously; EWEK-QA uses both text and knowledge graphs (PDF p. 10). This is the survey’s closest point of contact with direct vector-plus-graph combination.</li>
+<li><strong>Where Edge et al. appears:</strong> document-derived KG construction (PDF p. 9), community-summary text indexing (PDF p. 10), report-like community summaries as the graph format (PDF p. 20), post-generation merging of community answers scored by an LLM (PDF p. 22), and as the example of small-scale KG methods (PDF p. 29).</li>
+<li><strong>Training:</strong> training-free methods dominate when using closed-source LLMs; training-based retrievers use distant supervision (shortest paths between question and answer entities), reinforcement learning or self-supervised pre-training; joint training is also covered (PDF pp. 23–24).</li>
+<li><strong>Inconsistencies noted:</strong>
+<ul>
+<li>GR-Bench is described as including five domain KGs (PDF p. 9) but GRBench as covering 10 domain graphs (PDF p. 28).</li>
+<li>The organisation paragraph says Section 3 outlines the GraphRAG process, but Section 3 is Preliminaries and the overview is Section 4 (PDF p. 4).</li>
+<li>One sentence in Section 6.4.2 is cut off (“Liu et al. [101] train a PLM to”, PDF p. 16).</li>
+<li>Some reference entries are duplicated (e.g., Freebase [10]/[11], Bordes et al. [12]/[13]) (PDF p. 31).</li>
+<li>Metric names “BERT4Score” and “GPT4Score” appear to be typographical variants of BERTScore and GPT-4 scoring (PDF p. 28).</li>
+</ul>
+</li>
+</ul>
+<h3 id="53-mapping-to-the-surveys-stated-aims">5.3 Mapping to the survey’s stated aims<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#53-mapping-to-the-surveys-stated-aims" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Aim</th><th>Delivered content</th><th>Fully delivered?</th><th>Evidence</th></tr></thead><tbody><tr><td>Formal definition and universal workflow</td><td>Eqs. 3–6; three stages</td><td>Yes</td><td>PDF pp. 7–8</td></tr><tr><td>Core technologies per stage</td><td>Sections 5–7 taxonomy</td><td>Yes (descriptive)</td><td>PDF pp. 8–22</td></tr><tr><td>Training methods</td><td>Section 8</td><td>Yes</td><td>PDF pp. 23–24</td></tr><tr><td>Tasks, benchmarks, domains, metrics, industry</td><td>Section 9, Table 1</td><td>Yes, descriptive; no scores reported</td><td>PDF pp. 24–29</td></tr><tr><td>Challenges and future directions</td><td>Section 10</td><td>Yes</td><td>PDF pp. 29–30</td></tr><tr><td>”Comprehensive” coverage claim</td><td>No review protocol stated</td><td>Cannot be verified</td><td>PDF pp. 1, 3</td></tr></tbody></table></div>
+<hr/>
+<h2 id="6-discussion-and-contributions">6. Discussion and contributions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-discussion-and-contributions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="61-theoretical-contribution">6.1 Theoretical contribution<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#61-theoretical-contribution" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>A formal, probabilistic framing of GraphRAG as retriever and generator over a text-attributed graph (Eqs. 3–6) (PDF pp. 6–8).</li>
+<li>A conceptual separation of GraphRAG from RAG, LLMs on graphs and KBQA (PDF pp. 4–5).</li>
+</ul>
+<h3 id="62-methodological-contribution">6.2 Methodological contribution<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#62-methodological-contribution" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>A taxonomy of GraphRAG components: indexing types, retriever types, retrieval paradigms, granularities, enhancement strategies, generator and graph-format choices, and training regimes (PDF pp. 8–24).</li>
+</ul>
+<h3 id="63-empirical-contribution">6.3 Empirical contribution<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#63-empirical-contribution" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>No new experiments. It consolidates benchmark and metric usage (Table 1) and an inventory of industrial systems (PDF pp. 25–29).</li>
+</ul>
+<h3 id="64-practical-or-policy-implications">6.4 Practical or policy implications<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#64-practical-or-policy-implications" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>The authors state that GraphRAG can serve e-commerce, biomedical, academic, literature, legal and other scenarios, and suggest broader applications such as smart cities and IoT (PDF pp. 26–27, 30). <strong>These are descriptions and prospects, not verified effects.</strong></li>
+</ul>
+<hr/>
+<h2 id="7-limitations-and-future-research">7. Limitations and future research<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-limitations-and-future-research" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="71-limitations-explicitly-acknowledged-by-the-authors">7.1 Limitations explicitly acknowledged by the authors<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#71-limitations-explicitly-acknowledged-by-the-authors" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>GraphRAG is “still in its early stages” (PDF p. 3), and there are no unified, standard benchmarks (PDF p. 30).</li>
+<li>Most methods rely on static databases (PDF p. 29) and are tailored for small-scale KGs (PDF p. 29).</li>
+<li>Graph languages can yield overlong contexts; embeddings struggle to preserve precise information and generalise poorly (PDF p. 21).</li>
+<li>Boundaries between retrieval granularities, and between retrieval and pre-generation enhancement, are not clear-cut (PDF pp. 15, 21).</li>
+<li>Query rewriting, common in RAG, is not covered in GraphRAG discussion (PDF p. 15).</li>
+</ul>
+<h3 id="72-further-limitations-identified-analytical-inference">7.2 Further limitations identified <strong>[Analytical inference]</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#72-further-limitations-identified-analytical-inference" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li><strong>No review protocol and no quantitative synthesis</strong> (basis: Sections 1–4 describe none).</li>
+<li><strong>Comparative claims rest on citation, not evidence collected here.</strong> For example, the claim that GraphRAG improves accuracy and comprehensiveness over RAG is stated in the abstract and conclusion (PDF pp. 1, 31); no comparison tables of GraphRAG vs vector RAG scores are provided (basis: Table 1 lists benchmarks and methods only).</li>
+<li><strong>QA-centric evidence base.</strong> The benchmarks and tasks emphasise KBQA over fixed KGs (PDF p. 25), which differs from corpus-derived graphs built by LLM extraction.</li>
+<li><strong>Multi-agent aspects are thin.</strong> LLM agents appear as retrievers or reasoners over graphs (PDF pp. 13, 15), and the text I read does not discuss multi-agent coordination or shared graph memory.</li>
+<li><strong>Cost and efficiency are discussed qualitatively</strong> (PDF pp. 12–13), without a systematic comparison of indexing or latency costs against vector RAG.</li>
+<li><strong>Quality of graph construction</strong> (entity extraction errors, hallucinated relations) receives little critical treatment in the sections I read.</li>
+</ol>
+<h3 id="73-future-research-directions">7.3 Future research directions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#73-future-research-directions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>Authors’ suggestions:</strong> dynamic and adaptive graphs; multimodal integration; scalable retrieval for million- to billion-entity KGs; combining with graph foundation models; lossless compression of retrieved context; standard benchmarks; broader applications (healthcare, finance, legal and compliance, smart cities and IoT) (PDF pp. 29–30).</li>
+<li><strong>Analytical suggestions [Analytical inference]:</strong> controlled comparisons of vector RAG, GraphRAG and hybrid retrieval on the same corpus; benchmarks that separate multi-hop from global-sensemaking questions; evaluation of graph-construction quality; study of graph memory shared across LLM agents.</li>
+</ul>
+<hr/>
+<h2 id="8-key-evidence-and-quotable-content">8. Key evidence and quotable content<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-key-evidence-and-quotable-content" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Use</th><th>Original short quote or accurate paraphrase</th><th>Page</th><th>Reminder</th></tr></thead><tbody><tr><td>Positioning</td><td>”GraphRAG leverages structural information across entities to enable more precise and comprehensive retrieval, capturing relational knowledge and facilitating more accurate, context-aware responses.”</td><td>PDF p. 1</td><td>Verbatim; an author claim, not a measured result</td></tr><tr><td>Problem with RAG</td><td>”Traditional RAG fails to capture significant structured relational knowledge that cannot be represented through semantic similarity alone.”</td><td>PDF p. 2</td><td>Verbatim; context is the citation-network example</td></tr><tr><td>Relation to RAG</td><td>”GraphRAG can be seen as a branch of RAG, which retrieves relevant relational knowledge from graph databases instead of text corpus.”</td><td>PDF p. 5</td><td>Verbatim fragment</td></tr><tr><td>Multi-hop-relevant limitation</td><td>”directly retrieving triplets from graph data may still lack contextual breadth and depth, thus being unable to capture indirect relationships or reasoning chains.”</td><td>PDF p. 14</td><td>Verbatim fragment; motivates path and subgraph retrieval</td></tr><tr><td>Formalisation</td><td>Paraphrase: GraphRAG is modelled as a graph retriever p_θ(G | q, 𝒢) and an answer generator p_φ(a | q, G), approximated using one optimal subgraph G*.</td><td>PDF p. 7</td><td>Paraphrase of Eqs. 3–4</td></tr><tr><td>Trade-off</td><td>Paraphrase: iterative retrieval can improve accuracy but costs more time, especially when LLMs act as retrievers; once retrieval suits real-time use.</td><td>PDF p. 13</td><td>Paraphrase</td></tr><tr><td>Scale limitation</td><td>”most contemporary methods are tailored for small-scale knowledge graphs”</td><td>PDF p. 29</td><td>Verbatim fragment; the sentence cites Edge et al. as the example</td></tr><tr><td>Benchmarks</td><td>”GraphRAG is a relatively new field that lacks unified and standard benchmarks for evaluating different methods.”</td><td>PDF p. 30</td><td>Verbatim</td></tr></tbody></table></div>
+<hr/>
+<h2 id="9-relation-to-my-research">9. Relation to my research<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-relation-to-my-research" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>Research context (user-supplied).</strong> Overall: How can Graph AI tools (especially GraphRAG) be used to define research gaps and solution space to support the integration of TOD and NbS design for reducing hydrological and ecological impacts near San Tin Technopole? Focus: How does GraphRAG improve multi-hop reasoning, context retrieval, and decision-making in multi-agent LLM systems compared to standard vector-based RAG?</p>
+<p><strong>Overall relevance [Analytical inference]:</strong> High for the GraphRAG-vs-vector-RAG part of the focus question as a map of the design space and a source of leads; partial as evidence, because the survey reports no head-to-head empirical comparison, treats multi-agent aspects only lightly, and has no hydrology, ecology or planning content.</p>
+<p><strong>How the survey’s taxonomy maps onto the focus question [Analytical inference, using the survey’s content]:</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Focus element</th><th>Relevant survey content</th><th>What is missing</th></tr></thead><tbody><tr><td>Multi-hop reasoning</td><td>Path and subgraph retrieval (PDF pp. 14–15); iterative and adaptive retrieval incl. ToG-style LLM agents (PDF p. 13); query decomposition (PDF p. 16); plan-then-retrieve (RoG) (PDF p. 12)</td><td>No consolidated evidence that GraphRAG beats vector RAG on multi-hop tasks; the word “multi-hop” appears mainly in reference titles</td></tr><tr><td>Context retrieval</td><td>Graph, text, vector and hybrid indexing (PDF pp. 9–10); retriever types (PDF pp. 11–12); knowledge merging and pruning (PDF pp. 16–17); graph languages and “lost in the middle” (PDF pp. 2, 21)</td><td>No quantitative retrieval-quality comparison against vector RAG</td></tr><tr><td>Decision-making</td><td>Post-generation enhancement and verification (KALMV verifier), answer merging (PDF p. 22); application domains including biomedical decision-making (PDF pp. 26–27)</td><td>Decision quality is not a studied outcome</td></tr><tr><td>Multi-agent LLM systems</td><td>LLM-based agents choosing retrieval tools or granularities (PDF pp. 13, 15)</td><td>No multi-agent coordination, shared graph memory or role-specialised retrieval</td></tr><tr><td>Versus standard vector RAG</td><td>The three RAG limitations (PDF p. 2); HybridRAG’s combined vector and graph retrieval (PDF p. 10)</td><td>No controlled comparison</td></tr></tbody></table></div>
+<ul>
+<li><strong>Theory worth borrowing:</strong>
+<ul>
+<li>The retriever–generator decomposition (Eqs. 3–6) for stating precisely what changes between vector RAG (retrieve text) and GraphRAG (retrieve a subgraph).</li>
+<li>Text-attributed graph as a unifying data model.</li>
+<li>The three RAG limitations as hypotheses to test: neglected relationships, redundant context, missing global information (PDF p. 2).</li>
+</ul>
+</li>
+<li><strong>Reusable methods or indicators:</strong>
+<ul>
+<li>The taxonomy dimensions as a design checklist for your own pipeline: indexing type, retriever, paradigm, granularity, enhancement, graph format.</li>
+<li>Retrieval-quality metrics: answer coverage versus retrieved-subgraph size, query relevance, diversity, faithfulness (PDF p. 28).</li>
+<li>Hybrid indexing (graph plus vector) as a fair baseline construction (PDF p. 10).</li>
+</ul>
+</li>
+<li><strong>Comparable data or cases:</strong> Domain KGs are mostly biomedical, e-commerce, academic and legal (PDF pp. 9, 26–27). None in hydrology, ecology, urban planning or transport. “Smart cities and IoT” appears only as a future application (PDF p. 30).</li>
+<li><strong>Arguments it can support:</strong>
+<ul>
+<li>GraphRAG is a distinct family from text RAG, motivated by relational knowledge, redundancy and global-information limits (PDF pp. 2, 5).</li>
+<li>Retrieval granularity (triplets vs paths vs subgraphs) matters for indirect relationships and reasoning chains (PDF p. 14).</li>
+<li>Standard benchmarks are lacking and most methods are tested on small KGs, which supports a case for a domain-specific, application-driven evaluation (PDF pp. 29–30).</li>
+</ul>
+</li>
+<li><strong>Possible conflicts or cautions:</strong>
+<ul>
+<li>The survey’s performance statements are not backed by synthesised evidence; do not cite it as proof that GraphRAG outperforms vector RAG. For empirical evidence use primary papers such as Edge et al., which reports gains for global sensemaking questions only.</li>
+<li>Its benchmark base is QA over fixed knowledge graphs, whereas your use case would build a graph from heterogeneous literature and spatial data.</li>
+</ul>
+</li>
+<li><strong>Research gaps this suggests:</strong>
+<ul>
+<li>Controlled GraphRAG vs vector RAG vs hybrid comparisons, including multi-hop and global questions on the same corpus.</li>
+<li>Graph-structured shared memory for multi-agent LLM systems, with role-specific retrieval.</li>
+<li>Domain-specific graph construction and evaluation for environmental planning (TOD, NbS, hydrology, ecology), including how to bring non-textual spatial data into a text-attributed graph (the survey flags multimodality as an open challenge, PDF p. 29).</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2 id="10-literature-relationship-network">10. Literature relationship network<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-literature-relationship-network" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><em>No existing Obsidian notes were provided (“無”). Two target notes below were produced earlier in this conversation, so they are linked by their real file names and marked “Existing (made earlier)”. The other links are unresolved links built from this paper’s text and reference list, marked “To create”. Re-validate once more notes are added.</em></p>
+<h3 id="101-strong-relationships">10.1 Strong relationships<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#101-strong-relationships" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Linked paper</th><th>Relation type</th><th>Explanation</th><th>Basis</th><th>Confidence</th><th>Note status</th></tr></thead><tbody><tr><td><a href="../graphrag/edge_2025_graphrag_query_focused_summarization" class="internal internal-link" data-slug="graphrag/edge_2025_graphrag_query_focused_summarization">Edge_2025_GraphRAG_Query_Focused_Summarization</a></td><td>Method similar</td><td>Reviewed as a representative GraphRAG method: LLM-built entity KG, community summaries as text index and graph format, scored community answers merged post-generation; also cited as the small-scale-KG example. The survey cites the 2024 arXiv version [32]</td><td>PDF pp. 9, 10, 20, 22, 28, 29</td><td>High</td><td>Existing (made earlier)</td></tr><tr><td><a href="../graphrag/kipf_2017_semi_supervised_graph_convolutional_networks" class="internal internal-link" data-slug="graphrag/kipf_2017_semi_supervised_graph_convolutional_networks">Kipf_2017_Semi_Supervised_Graph_Convolutional_Networks</a></td><td>Theoretical foundation</td><td>GCN is named as a classical GNN; the survey’s message-passing definition (Eq. 1) and GNN generators and retrievers build on this family</td><td>PDF pp. 6, 18</td><td>High</td><td>Existing (made earlier)</td></tr><tr><td><a href="../gao_2023_rag_survey" class="internal internal-link" data-slug="gao_2023_rag_survey">Gao_2023_RAG_Survey</a></td><td>Extension</td><td>Earlier RAG survey (arXiv Dec 2023; listed as 2024 in the reference list) that this survey says it differs from by focusing on structured graph data</td><td>PDF pp. 4–5</td><td>High</td><td>To create</td></tr><tr><td><a href="../he_2024_g_retriever" class="internal internal-link" data-slug="he_2024_g_retriever">He_2024_G_Retriever</a></td><td>Method similar</td><td>PCST-based subgraph retrieval; vector indexing of node and edge text; GraphQA benchmark</td><td>PDF pp. 9, 10, 11, 12</td><td>High</td><td>To create</td></tr><tr><td><a href="../luo_2024_reasoning_on_graphs" class="internal internal-link" data-slug="luo_2024_reasoning_on_graphs">Luo_2024_Reasoning_on_Graphs</a></td><td>Method similar</td><td>RoG: LLM generates relation-path plans, then paths are retrieved; example of query expansion, plan-based multi-stage retrieval and path granularity</td><td>PDF pp. 12, 14, 15</td><td>High</td><td>To create</td></tr><tr><td><a href="../sun_2024_think_on_graph" class="internal internal-link" data-slug="sun_2024_think_on_graph">Sun_2024_Think_on_Graph</a></td><td>Method similar</td><td>ToG: LLM agent performs beam search on KGs; example of adaptive iterative retrieval and path retrieval</td><td>PDF pp. 13, 14</td><td>High</td><td>To create</td></tr><tr><td><a href="../mavromatis_2024_gnn_rag" class="internal internal-link" data-slug="mavromatis_2024_gnn_rag">Mavromatis_2024_GNN_RAG</a></td><td>Method similar</td><td>GNN-based retriever scoring entities, then retrieving shortest paths</td><td>PDF pp. 12, 13</td><td>High</td><td>To create</td></tr><tr><td><a href="../wang_2023_knowledge_graph_prompting" class="internal internal-link" data-slug="wang_2023_knowledge_graph_prompting">Wang_2023_Knowledge_Graph_Prompting</a></td><td>Method similar</td><td>KGP: document graph with LLM-based iterative retrieval over neighbour context. The survey lists it as 2024 (AAAI 2024); the earlier Edge note cites it as 2023</td><td>PDF pp. 9, 13</td><td>Medium</td><td>To create</td></tr><tr><td><a href="../gutierrez_2024_hipporag" class="internal internal-link" data-slug="gutierrez_2024_hipporag">Gutierrez_2024_HippoRAG</a></td><td>Method similar</td><td>KG built from documents; Personalized PageRank used to rank retrieved candidates</td><td>PDF pp. 9, 16</td><td>Medium</td><td>To create</td></tr><tr><td><a href="../sarmah_2024_hybridrag" class="internal internal-link" data-slug="sarmah_2024_hybridrag">Sarmah_2024_HybridRAG</a></td><td>Method similar</td><td>Retrieves vector and graph data simultaneously (hybrid indexing); the survey’s explicit example of combining vector and graph retrieval</td><td>PDF p. 10</td><td>High</td><td>To create</td></tr><tr><td><a href="../jin_2024_graph_chain_of_thought" class="internal internal-link" data-slug="jin_2024_graph_chain_of_thought">Jin_2024_Graph_Chain_of_Thought</a></td><td>Data similar</td><td>Source of GR-Bench / GRBench and an LLM-agent method that adaptively selects granularities</td><td>PDF pp. 9, 15, 27–28</td><td>Medium</td><td>To create</td></tr></tbody></table></div>
+<h3 id="102-concept-method-and-case-nodes">10.2 Concept, method and case nodes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#102-concept-method-and-case-nodes" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Node</th><th>Type</th><th>Role in this paper</th><th>Suggested connection direction</th></tr></thead><tbody><tr><td><a href="../graphrag" class="internal internal-link" data-slug="graphrag">GraphRAG</a></td><td>Concept</td><td>Central subject</td><td>GraphRAG method and evaluation papers</td></tr><tr><td><a href="../vector_rag" class="internal internal-link" data-slug="vector_rag">Vector_RAG</a></td><td>Concept</td><td>Baseline family contrasted</td><td>RAG baselines and embedding-retrieval papers</td></tr><tr><td><a href="../retrieval_augmented_generation" class="internal internal-link" data-slug="retrieval_augmented_generation">Retrieval_Augmented_Generation</a></td><td>Domain</td><td>Parent field</td><td>RAG surveys and benchmarks</td></tr><tr><td><a href="../knowledge_graph_construction_with_llms" class="internal internal-link" data-slug="knowledge_graph_construction_with_llms">Knowledge_Graph_Construction_with_LLMs</a></td><td>Domain</td><td>Self-constructed graph data via LLM extraction</td><td>KG construction papers</td></tr><tr><td><a href="../graph_neural_networks" class="internal internal-link" data-slug="graph_neural_networks">Graph_Neural_Networks</a></td><td>Domain</td><td>GNN retrievers and generators</td><td>GNN papers</td></tr><tr><td><a href="../text_attributed_graph" class="internal internal-link" data-slug="text_attributed_graph">Text_Attributed_Graph</a></td><td>Concept</td><td>Unifying data model</td><td>Graph-text papers</td></tr><tr><td><a href="../graph_based_indexing" class="internal internal-link" data-slug="graph_based_indexing">Graph_Based_Indexing</a></td><td>Concept</td><td>Stage 1 of the workflow</td><td>Indexing and graph database papers</td></tr><tr><td><a href="../graph_guided_retrieval" class="internal internal-link" data-slug="graph_guided_retrieval">Graph_Guided_Retrieval</a></td><td>Concept</td><td>Stage 2 of the workflow</td><td>Retriever papers</td></tr><tr><td><a href="../graph_enhanced_generation" class="internal internal-link" data-slug="graph_enhanced_generation">Graph_Enhanced_Generation</a></td><td>Concept</td><td>Stage 3 of the workflow</td><td>Generator and prompting papers</td></tr><tr><td><a href="../retrieval_granularity" class="internal internal-link" data-slug="retrieval_granularity">Retrieval_Granularity</a></td><td>Concept</td><td>Nodes, triplets, paths, subgraphs</td><td>Multi-hop retrieval papers</td></tr><tr><td><a href="../multi_hop_reasoning" class="internal internal-link" data-slug="multi_hop_reasoning">Multi_Hop_Reasoning</a></td><td>Concept</td><td>Path, iterative and decomposition-based methods</td><td>Multi-hop QA papers</td></tr><tr><td><a href="../iterative_retrieval" class="internal internal-link" data-slug="iterative_retrieval">Iterative_Retrieval</a></td><td>Method</td><td>Adaptive and non-adaptive retrieval loops</td><td>Agent and reasoning-on-graph papers</td></tr><tr><td><a href="../query_decomposition" class="internal internal-link" data-slug="query_decomposition">Query_Decomposition</a></td><td>Method</td><td>Splitting queries into sub-queries</td><td>Multi-hop and agent papers</td></tr><tr><td><a href="../graph_to_text_serialization" class="internal internal-link" data-slug="graph_to_text_serialization">Graph_To_Text_Serialization</a></td><td>Method</td><td>Graph languages for LM input</td><td>Prompting and graph-encoding papers</td></tr><tr><td><a href="../taxonomy_based_literature_review" class="internal internal-link" data-slug="taxonomy_based_literature_review">Taxonomy_Based_Literature_Review</a></td><td>Method</td><td>The survey’s own design</td><td>Other reviews of the field</td></tr></tbody></table></div>
+<h3 id="103-relationship-summary">10.3 Relationship summary<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#103-relationship-summary" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Built from this paper’s text and reference list only. The survey is a hub node for the GraphRAG branch of the literature network. It connects the RAG line (RAG surveys, vector retrieval, hybrid indexing), the KG-QA and reasoning-on-graphs line (RoG, ToG, GNN-RAG, G-Retriever, KGP) and the GNN line (GCN as the classic message-passing model). It treats Edge et al. as one representative method for corpus-level summarisation. It is a natural bridge between the Edge (GraphRAG) and Kipf (GCN) notes already in this conversation and the primary papers it cites. Re-validate after adding other notes.</p>
+<hr/>
+<h2 id="11-post-reading-memo">11. Post-reading memo<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-post-reading-memo" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<blockquote class="callout question" data-callout="question">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Questions worth pursuing </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ol>
+<li>Which of the surveyed retrieval designs (path retrieval, iterative or adaptive retrieval, query decomposition) actually improve multi-hop answers over vector RAG on the same corpus, and by how much?</li>
+<li>How would a shared graph store be organised for several role-specialised LLM agents (e.g., planner, hydrologist, ecologist), and what retrieval granularity should each agent use?</li>
+<li>When does hybrid vector-plus-graph indexing (as in HybridRAG) beat either alone for literature-derived graphs?</li>
+<li>How should graph-construction errors (missed or hallucinated relations) be measured and propagated into retrieval-quality evaluation?</li>
+<li>How can non-textual spatial and hydrological data be represented in a text-attributed graph for retrieval?</li>
+</ol>
+</div>
+</blockquote>
+<blockquote class="callout idea" data-callout="idea">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Transferable methods or ideas </p></div>
+                  
+                </div>
+<div class="callout-content">
+<ul>
+<li>Use the stage-by-stage taxonomy as a design and reporting checklist for your own GraphRAG pipeline.</li>
+<li>Use the retriever–generator decomposition (Eqs. 3–6) to state clearly what changes between a vector baseline and a graph variant.</li>
+<li>Build baselines at several indexing levels (vector only, graph only, hybrid) and several granularities (triplets, paths, subgraphs).</li>
+<li>Report retrieval-quality metrics (coverage versus retrieved-subgraph size, diversity, faithfulness) in addition to answer metrics.</li>
+</ul>
+</div>
+</blockquote>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Limits on use </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>A survey with no stated review protocol, no quantitative synthesis and a QA-over-KG emphasis. Treat benefit statements as claims to verify in primary papers. It covers work up to about mid-2024, so later GraphRAG developments are not included. It has little on multi-agent LLM systems and nothing on planning, hydrology or ecology.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="12-reference-leads">12. Reference leads<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-reference-leads" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Suggested note link</th><th>Reason</th><th>Relation to this paper</th><th>Priority</th></tr></thead><tbody><tr><td><a href="../sarmah_2024_hybridrag" class="internal internal-link" data-slug="sarmah_2024_hybridrag">Sarmah_2024_HybridRAG</a></td><td>Combines vector and graph retrieval; the closest direct comparison point to your vector-vs-graph question</td><td>Key contrast</td><td>High</td></tr><tr><td><a href="../sun_2024_think_on_graph" class="internal internal-link" data-slug="sun_2024_think_on_graph">Sun_2024_Think_on_Graph</a></td><td>LLM agent explores multiple reasoning paths over a KG (adaptive iterative retrieval)</td><td>Method source</td><td>High</td></tr><tr><td><a href="../luo_2024_reasoning_on_graphs" class="internal internal-link" data-slug="luo_2024_reasoning_on_graphs">Luo_2024_Reasoning_on_Graphs</a></td><td>Plan-then-retrieve reasoning paths; multi-hop faithful reasoning</td><td>Method source</td><td>High</td></tr><tr><td><a href="../mavromatis_2024_gnn_rag" class="internal internal-link" data-slug="mavromatis_2024_gnn_rag">Mavromatis_2024_GNN_RAG</a></td><td>GNN retriever plus LLM reasoning; links GCN-style models to RAG</td><td>Method source</td><td>High</td></tr><tr><td><a href="../he_2024_g_retriever" class="internal internal-link" data-slug="he_2024_g_retriever">He_2024_G_Retriever</a></td><td>Subgraph retrieval with PCST and GraphQA benchmark</td><td>Method source / benchmark</td><td>High</td></tr><tr><td><a href="../wang_2023_knowledge_graph_prompting" class="internal internal-link" data-slug="wang_2023_knowledge_graph_prompting">Wang_2023_Knowledge_Graph_Prompting</a></td><td>Graph over documents with LLM traversal for multi-document QA</td><td>Key contrast</td><td>Medium</td></tr><tr><td><a href="../gutierrez_2024_hipporag" class="internal internal-link" data-slug="gutierrez_2024_hipporag">Gutierrez_2024_HippoRAG</a></td><td>KG from documents with Personalized PageRank retrieval</td><td>Method source</td><td>Medium</td></tr><tr><td><a href="../jin_2024_graph_chain_of_thought" class="internal internal-link" data-slug="jin_2024_graph_chain_of_thought">Jin_2024_Graph_Chain_of_Thought</a></td><td>GRBench benchmark and LLM-agent reasoning on graphs</td><td>Method source / benchmark</td><td>Medium</td></tr><tr><td><a href="../fatemi_2023_talk_like_a_graph" class="internal internal-link" data-slug="fatemi_2023_talk_like_a_graph">Fatemi_2023_Talk_Like_a_Graph</a></td><td>Effect of graph encoding choices on LLM performance</td><td>Method source</td><td>Medium</td></tr><tr><td><a href="../gao_2023_rag_survey" class="internal internal-link" data-slug="gao_2023_rag_survey">Gao_2023_RAG_Survey</a></td><td>General RAG survey to anchor the vector-RAG side</td><td>Survey entry</td><td>Medium</td></tr></tbody></table></div>
+<hr/>
+<h2 id="13-quick-recap">13. Quick recap<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-quick-recap" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>One-sentence research question:</strong> How can the fast-growing body of GraphRAG work be organised into a common workflow, taxonomy and set of open challenges?</li>
+<li><strong>One-sentence method:</strong> A taxonomy-based narrative survey structured around G-Indexing, G-Retrieval and G-Generation, with training, tasks, benchmarks, metrics and industry systems, but no stated review protocol.</li>
+<li><strong>One-sentence conclusion:</strong> GraphRAG is presented as a way to address RAG’s relational, redundancy and global-information limits, with open problems in dynamic graphs, scale, multimodality, compression, benchmarks and applications.</li>
+<li><strong>One-sentence contribution:</strong> A formal definition, a three-stage workflow and a comprehensive map of GraphRAG techniques and resources as of mid-2024.</li>
+<li><strong>One-sentence limitation:</strong> Descriptive, with unverified comparative claims, a QA-over-KG evidence base and little on multi-agent systems or domain applications.</li>
+<li><strong>Worth close reading:</strong> Yes, as the orientation map for your GraphRAG focus (Sections 4–7, 9.3, 10); use primary papers for evidence.</li>
+<li><strong>Recommended priority:</strong> ★★★★★</li>
+</ul></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-2" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#graph-retrieval-augmented-generation-a-survey" data-for="graph-retrieval-augmented-generation-a-survey">Graph Retrieval-Augmented Generation: A Survey</a></li><li class="depth-1"><a href="#1-basic-information" data-for="1-basic-information">1. Basic information</a></li><li class="depth-1"><a href="#2-background-and-research-problem" data-for="2-background-and-research-problem">2. Background and research problem</a></li><li class="depth-2"><a href="#21-research-background" data-for="21-research-background">2.1 Research background</a></li><li class="depth-2"><a href="#22-literature-gap-as-stated-by-the-authors" data-for="22-literature-gap-as-stated-by-the-authors">2.2 Literature gap (as stated by the authors)</a></li><li class="depth-2"><a href="#23-research-objectives-and-questions" data-for="23-research-objectives-and-questions">2.3 Research objectives and questions</a></li><li class="depth-1"><a href="#3-theory-and-conceptual-framework" data-for="3-theory-and-conceptual-framework">3. Theory and conceptual framework</a></li><li class="depth-2"><a href="#31-core-concepts" data-for="31-core-concepts">3.1 Core concepts</a></li><li class="depth-2"><a href="#32-theoretical-foundations" data-for="32-theoretical-foundations">3.2 Theoretical foundations</a></li><li class="depth-2"><a href="#33-concept-relationships" data-for="33-concept-relationships">3.3 Concept relationships</a></li><li class="depth-1"><a href="#4-data-and-methods" data-for="4-data-and-methods">4. Data and methods</a></li><li class="depth-2"><a href="#41-research-design" data-for="41-research-design">4.1 Research design</a></li><li class="depth-2"><a href="#42-data-literature-and-resources-covered" data-for="42-data-literature-and-resources-covered">4.2 Data (literature and resources covered)</a></li><li class="depth-2"><a href="#43-method-flow-organisation-of-the-survey" data-for="43-method-flow-organisation-of-the-survey">4.3 Method flow (organisation of the survey)</a></li><li class="depth-2"><a href="#44-models-indicators-and-variables" data-for="44-models-indicators-and-variables">4.4 Models, indicators and variables</a></li><li class="depth-2"><a href="#45-method-evaluation" data-for="45-method-evaluation">4.5 Method evaluation</a></li><li class="depth-1"><a href="#5-main-results" data-for="5-main-results">5. Main results</a></li><li class="depth-2"><a href="#51-core-findings-main-syntheses-of-the-review" data-for="51-core-findings-main-syntheses-of-the-review">5.1 Core findings (main syntheses of the review)</a></li><li class="depth-2"><a href="#52-secondary-findings-and-anomalies" data-for="52-secondary-findings-and-anomalies">5.2 Secondary findings and anomalies</a></li><li class="depth-2"><a href="#53-mapping-to-the-surveys-stated-aims" data-for="53-mapping-to-the-surveys-stated-aims">5.3 Mapping to the survey’s stated aims</a></li><li class="depth-1"><a href="#6-discussion-and-contributions" data-for="6-discussion-and-contributions">6. Discussion and contributions</a></li><li class="depth-2"><a href="#61-theoretical-contribution" data-for="61-theoretical-contribution">6.1 Theoretical contribution</a></li><li class="depth-2"><a href="#62-methodological-contribution" data-for="62-methodological-contribution">6.2 Methodological contribution</a></li><li class="depth-2"><a href="#63-empirical-contribution" data-for="63-empirical-contribution">6.3 Empirical contribution</a></li><li class="depth-2"><a href="#64-practical-or-policy-implications" data-for="64-practical-or-policy-implications">6.4 Practical or policy implications</a></li><li class="depth-1"><a href="#7-limitations-and-future-research" data-for="7-limitations-and-future-research">7. Limitations and future research</a></li><li class="depth-2"><a href="#71-limitations-explicitly-acknowledged-by-the-authors" data-for="71-limitations-explicitly-acknowledged-by-the-authors">7.1 Limitations explicitly acknowledged by the authors</a></li><li class="depth-2"><a href="#72-further-limitations-identified-analytical-inference" data-for="72-further-limitations-identified-analytical-inference">7.2 Further limitations identified [Analytical inference]</a></li><li class="depth-2"><a href="#73-future-research-directions" data-for="73-future-research-directions">7.3 Future research directions</a></li><li class="depth-1"><a href="#8-key-evidence-and-quotable-content" data-for="8-key-evidence-and-quotable-content">8. Key evidence and quotable content</a></li><li class="depth-1"><a href="#9-relation-to-my-research" data-for="9-relation-to-my-research">9. Relation to my research</a></li><li class="depth-1"><a href="#10-literature-relationship-network" data-for="10-literature-relationship-network">10. Literature relationship network</a></li><li class="depth-2"><a href="#101-strong-relationships" data-for="101-strong-relationships">10.1 Strong relationships</a></li><li class="depth-2"><a href="#102-concept-method-and-case-nodes" data-for="102-concept-method-and-case-nodes">10.2 Concept, method and case nodes</a></li><li class="depth-2"><a href="#103-relationship-summary" data-for="103-relationship-summary">10.3 Relationship summary</a></li><li class="depth-1"><a href="#11-post-reading-memo" data-for="11-post-reading-memo">11. Post-reading memo</a></li><li class="depth-1"><a href="#12-reference-leads" data-for="12-reference-leads">12. Reference leads</a></li><li class="depth-1"><a href="#13-quick-recap" data-for="13-quick-recap">13. Quick recap</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script src="../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../postscript-3426b91c.js" type="module" data-persist="true"></script></html>
